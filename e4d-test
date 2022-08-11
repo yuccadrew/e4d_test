@@ -1,0 +1,52 @@
+#!/bin/bash
+
+#./Test_Matrix.py > report.txt 2> error.txt
+#mail -a report.txt -a error.txt -s "E4D test report" yue.zhu@pnnl.gov <<< "See attached."
+#echo "See attached." | mail -a report.txt -a error.txt -s "E4D Test Report" yue.zhu@pnnl.gov
+#mail -s 'Test Mail' user1@yahoo.com user2@yahoo.com user3@yahoo.com user4@yahoo.com
+
+#while true; do
+#    echo "$(date '+%d/%m/%Y %H:%M:%S')"
+#    rm -rf codes/updates
+#    ./e4d-install -with-petsc codes/petsc -with-imi codes/extensions/IMI.F90 -build-px codes/updates > install.log 2> error.log
+#    ./Test_Matrix.py > report.txt 2> error.txt
+#    echo "See attached." | mail -a report.txt -a error.txt -s "E4D Test Report" yue.zhu@pnnl.gov
+#    echo "See attached." | mail -a report.txt -a error.txt -s "E4D Test Report" judith.robinson@pnnl.gov
+#    sleep 24h
+#done
+
+# Use "crontab -l" to view Crontab entries
+# Use "crontab -e" to edit Crontab entries
+# For example, you can run e4d-test at 20:00 every day with:
+# 0 20 * * * e4d-test
+
+echo "compressing e4d test scripts ..."
+cd /home/zhuy359/projects/e4d_test/codes
+rm -rf scripts
+mkdir scripts
+cp -p ../e4d-install scripts
+cp -p ../e4d-test scripts
+cp -p ../Test_Matrix.ipynb scripts
+cp -p ../Test_Matrix.py scripts
+#cp -pr extensions scripts
+rm ../scripts.tar.gz
+tar -czvf ../scripts.tar.gz scripts
+echo "done with compressing"
+
+cd /home/zhuy359/projects/e4d_test
+rm -rf codes/updates
+
+./e4d-install -with-petsc codes/petsc -with-imi codes/extensions/IMI.F90 -build-tetgen -build-triangle -build-px codes/updates > install.log 2> error.log
+./Test_Matrix.py > report.txt 2> error.txt
+
+echo -e "Dear E4D Developers:\n\n\
+Please find attached report.txt for all E4D test results and error.txt for error messages.\n\
+    -  E4D test runs nightly on spud under /home/zhuy359/projects/e4d_test\n\
+    -  Latest test scripts are attached in scripts.tar.gz\n\
+    -  Warnings in report.txt can be ignored\n\
+    -  The error.txt is empty if all E4D test requirements are met\n\n\
+This is an auto generated message. Please do not reply to this email. \
+If you have any questions, please contact Yue Zhu <yue.zhu@pnnl.gov>.\n\n\
+Sincerely,\nE4D Development Team\nPNNL" | mail -a report.txt -a error.txt -a scripts.tar.gz -s "E4D Test Report $(date '+%B %d %Y')" \
+-r "E4D Test <zhuy359@spud.pnl.gov>" yue.zhu@pnnl.gov 
+#judith.robinson@pnnl.gov tj@pnnl.gov piyoosh.jaysaval@pnnl.gov e4d@pnnl.gov

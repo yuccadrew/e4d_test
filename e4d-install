@@ -1,0 +1,625 @@
+#!/bin/bash
+#-----------------------------------------------------------------------
+#
+# E4D_INSTALL - Compile E4D and third-party packages
+#
+# Usage:
+#    e4d-install    [-with-petsc petsc_dir] [-with-imi imi_file]"
+#                   [-build-tetgen] [-build-triangle]"
+#                   [-build-bx] [-build-px] directory"
+#
+# Notes:
+# This script works for petsc 8.x or above
+# See https://bitbucket.org/john775/e4d_dev/wiki/compiling_e4d
+# for mannually compling E4D and third-party packages
+#
+# Modifications:
+# Yue Zhu, Mon Feb/24/2020
+# Modified prerequisite to include gcc/g++/make/unzip
+# Updated from netcdf-c-4.7.1 to netcdf-c-4.7.3
+# Enabled -build-px
+# Fixed \$PATH and \$LD_LIBRARY_PATH
+#
+# Yue Zhu, Fri Jun/12/2020
+# Modified prerequisite to exclude hg
+# Updated from https://github.com/pnnl/E4D instead of the bitbucket site
+#
+# Yue Zhu, Wed Jun/18/2020
+# Updated tetgen and triangle installations
+#-----------------------------------------------------------------------
+
+petsc_dir=""
+imi=""
+build_tetgen=false
+build_triangle=false
+build_bx=false
+build_px=false
+
+# Figure out the platform so if we're on a platform for which we need to
+# perform extra steps, we know it.
+uname=`which uname`
+os=`$uname -s | tr "[A-Z]" "[a-z]" | tr -d "[0-9]"`
+
+option_found=true
+while [ "$option_found" = "true" ]; do
+    case "$1" in
+        -with-petsc)
+            petsc_dir="${2%/}"
+            shift
+            shift
+            ;;
+        -with-imi)
+            imi="$2"
+            shift
+            shift
+            ;;
+        -build-tetgen)
+            build_tetgen=true
+            shift
+            ;;
+        -build-triangle)
+            build_triangle=true
+            shift
+            ;;
+        -build-bx)
+            build_bx=true
+            shift
+            ;;
+        -build-px)
+            build_px=true
+            shift
+            ;;
+        *)
+            option_found=false
+            ;;
+    esac
+done
+
+if [ "$#" != "1" ]; then
+    echo ""
+    echo "Usage: e4d-install [-with-petsc petsc_dir] [-with-imi imi_file] "
+    echo "                   [-build-tetgen] [-build-triangle]"
+    echo "                   [-build-bx] [-build-px] directory"
+    echo ""
+    echo "This will install all of its files and subdirectories directly in"
+    echo "the specified directory. (So use /usr/local/e4d, not /usr/local)"
+    echo ""
+    exit 1
+fi
+
+dir="${1%/}"
+
+#
+# If the directory name is not an absolute path then make it one.
+#
+if [ "$dir" = "." ]; then
+    dir=`pwd`
+else
+    absolutepath=`echo "$dir" | grep "^/"`
+    if [ "$absolutepath" = "" ]; then
+        dir=`pwd`/"$dir"
+    fi
+fi
+
+#
+# If the directory is not writable or cannot be created then exit.
+#
+if [ -e "$dir" ]; then
+    touch "$dir/test.$$" 2> /dev/null
+    if [ ! -e "$dir/test.$$" ]; then
+        echo ""
+        echo "Error: you do not have write permission to $dir"
+        echo ""
+        exit 3
+    else
+        rm "$dir/test.$$"
+    fi
+else
+    touch "$dir.test.$$" 2> /dev/null
+    if [ ! -e "$dir.test.$$" ]; then
+        echo ""
+        echo "Error: you do not have write permission to create $dir"
+        echo ""
+        exit 3
+    else
+        rm "$dir.test.$$"
+    fi
+fi
+
+#
+# If the directory exists but is not empty then exit.
+#
+if [ -e "$dir" ]; then
+    if [ "$(ls -A "$dir")" ]; then
+        echo ""
+        echo "Warning: $dir already exists and is not an empty directory"
+        read -r -p "Do you want to continue? [y/N] " response
+        case "$response" in
+            [yY][eE][sS]|[yY])
+                ;;
+            *)
+                exit 3
+                ;;
+        esac
+        #echo ""
+    fi
+fi
+
+#
+# If with-petsc is on but mpirun is not found then exit.
+#
+if [ "$petsc_dir" != "" ]; then
+    if [ "$petsc_dir" = "." ]; then
+        petsc_dir=`pwd`
+    else
+        absolutepath=`echo "$petsc_dir" | grep "^/"`
+        if [ "$absolutepath" = "" ]; then
+            petsc_dir=`pwd`/"$petsc_dir"
+        fi
+    fi
+    
+    petsc_arch=`find $petsc_dir -maxdepth 1 -type d -name "arch*"`
+    petsc_arch=`basename "$petsc_arch"`
+    if [ "$petsc_arch" = "" ]; then
+        echo ""
+        echo "Error: cannot find $petsc_dir/arch*"
+        echo ""
+        exit 3
+    fi
+    
+    mpirun="$petsc_dir/$petsc_arch/bin/mpirun"
+    if [ ! -f "$mpirun" ]; then
+        echo ""
+        echo "Error: cannot find $mpirun"
+        echo ""
+        exit 3
+    fi
+fi
+
+#
+# If with-imi is on but IMI.F90 is not found then exit.
+#
+if [ "$imi" != "" ]; then
+    absolutepath=`echo "$imi" | grep "^/"`
+    if [ "$absolutepath" = "" ]; then
+        imi=`pwd`/"$imi"
+    fi
+    if [ ! -f "$imi" ]; then
+        echo ""
+        echo "Error: cannot find $imi"
+        echo ""
+        exit 3
+    fi
+fi
+
+#
+# If commands git & m4 & gfortran & python2.7 are not found then exit
+#
+git=`which git`
+m4=`which m4`
+gfortran=`which gfortran`
+gcc=`which gcc`
+gpp=`which g++`
+make=`which make`
+unzip=`which unzip`
+python=`which python2.7`
+if [ "$git" = "" ]; then
+    echo ""
+    echo "Error: cannot find command 'git'"
+    echo ""
+    exit 3
+fi
+if [ "$m4" = "" ]; then
+    echo ""
+    echo "Error: cannot find command 'm4'"
+    echo ""
+    exit 3
+fi
+if [ "$gfortran" = "" ]; then
+    echo ""
+    echo "Error: cannot find command 'gfortran'"
+    echo ""
+    exit 3
+fi
+if [ "$gcc" = "" ]; then
+    echo ""
+    echo "Error: cannot find command 'gcc'"
+    echo ""
+    exit 3
+fi
+if [ "$gpp" = "" ]; then
+    echo ""
+    echo "Error: cannot find command 'g++'"
+    echo ""
+    exit 3
+fi
+if [ "$make" = "" ]; then
+    echo ""
+    echo "Error: cannot find command 'make'"
+    echo ""
+    exit 3
+fi
+if [ "$unzip" = "" ]; then
+    echo ""
+    echo "Error: cannot find command 'unzip'"
+    echo ""
+    exit 3
+fi
+if [ "$python" = "" ]; then
+    echo ""
+    echo "Error: cannot find command 'python2.7'"
+    echo ""
+    exit 3
+fi
+
+#echo "------------------------------------------------------------------"
+echo ""
+echo "This will install all of its files and subdirectories directly in"
+echo "$dir"
+#echo ""
+#echo "-------------------------------------------------------------------"
+
+#
+# If the installation directory doesn't exist, create it.
+#
+[ ! -e "$dir" ] && mkdir "$dir"
+[ ! -e "$dir/bin" ] && mkdir "$dir/bin"
+[ ! -e "$dir/lib" ] && mkdir "$dir/lib"
+
+#
+# If with-petsc is not specified then install PETSc.
+#
+if [ "$petsc_dir" = "" ]; then
+    echo ""
+    echo "=============================== Install PETSc ================================"
+    echo ""
+    echo "Entering $dir"
+    echo "git clone -b maint https://gitlab.com/petsc/petsc.git petsc"
+    cd "$dir"
+    git clone -b maint --quiet https://gitlab.com/petsc/petsc.git petsc
+    petsc_dir="$dir/petsc"
+    if [ ! -e "$petsc_dir" ]; then
+        echo "Error: cannot clone petsc"
+        echo "Failed to install PETSc"
+        echo ""
+        exit 2
+    fi
+    
+    echo ""
+    echo "Entering $petsc_dir"
+    echo "Working on PETSc configuration"
+    echo "./configure --with-cc=gcc --with-fc=gfortran --download-fblaslapack --download-mpich --with-debugging=0"
+    echo ""
+    echo "This will take about 20 min. Don't close terminal"
+    echo ""
+    cd "$petsc_dir"
+    [ "$PETSC_DIR" != "" ] && unset PETSC_DIR
+    [ "$PETSC_ARCH" != "" ] && unset PETSC_ARCH
+    ./configure --with-cc=gcc --with-fc=gfortran --download-fblaslapack --download-mpich --with-debugging=0 > /dev/null
+    petsc_arch=`find $petsc_dir -maxdepth 1 -type d -name "arch*"`
+    petsc_arch=`basename "$petsc_arch"`
+    if [ "$petsc_arch" = "" ]; then
+        echo "Error: cannot find $petsc_dir/arch*"
+        echo "Failed to install PETSc"
+        echo "See $petsc_dir/configure.log for more details"
+        echo ""
+        exit 2
+    fi
+    echo "make PETSC_DIR=\"$petsc_dir\" PETSC_ARCH=\"$petsc_arch\" all"
+    make PETSC_DIR="$petsc_dir" PETSC_ARCH="$petsc_arch" all > /dev/null
+    mpirun="$petsc_dir/$petsc_arch/bin/mpirun"
+    if [ ! -f "$mpirun" ]; then
+        echo "Error: cannot find $mpirun"
+        echo "Failed to install PETSc"
+        echo "See $petsc_dir/make.log for more details"
+        echo ""
+        exit 2
+    fi
+    echo "PETSc has been successfully installed in $petsc_dir"
+fi
+
+#
+# Download and install E4D with or without IMI module
+#
+echo ""
+echo "================================ Install E4D ================================="
+echo ""
+echo "Entering $dir"
+#echo "hg clone https://john775@bitbucket.org/john775/e4d_dev"
+echo "git clone -b master https://github.com/pnnl/E4D.git e4d_dev"
+cd "$dir"
+#hg clone https://john775@bitbucket.org/john775/e4d_dev > /dev/null
+git clone -b master --quiet https://github.com/pnnl/E4D.git e4d_dev
+#git clone -b develop --quiet https://github.com/pnnl/E4D.git e4d_dev
+if [ ! -e "$dir/e4d_dev" ]; then
+    echo "Error: cannot clone e4d_dev"
+fi
+if [ "$imi" = "" ]; then
+    makefile="Makefile"
+else
+    cp -pr "$imi" "$dir/e4d_dev/src"
+    makefile="Makefile.imi"
+fi
+
+echo ""
+echo "Entering $dir/e4d_dev/src"
+echo "make -f $makefile"
+cd "$dir/e4d_dev/src"
+sed -i "/^PETSC_DIR/c\PETSC_DIR = $petsc_dir" "$makefile"
+sed -i "/^PETSC_ARCH/c\PETSC_ARCH = $petsc_arch" "$makefile"
+make -f $makefile > make.log
+e4d="$dir/e4d_dev/src/e4d"
+if [ ! -f "$e4d" ]; then
+    echo ""
+    echo "Error: cannot find $e4d"
+    echo "Failed to install E4D"
+    echo "See $dir/e4d_dev/src/make.log for more details"
+    echo ""
+    exit 2
+fi
+echo "Copying e4d to $dir/bin"
+cp $e4d "$dir/bin"
+echo "E4D has been successfully installed in $dir/bin"
+
+function install_tetgen
+{    
+    echo ""
+    echo "=============================== Install Tetgen ==============================="
+    echo ""
+    #echo "Entering $dir"
+    #echo "git clone https://github.com/ufz/tetgen.git"
+    #cd "$dir"
+    #git clone --quiet https://github.com/ufz/tetgen.git
+    #if [ ! -e "$dir/tetgen" ]; then
+    #    echo "Error: cannot clone tetgen"
+    #    return 0
+    #fi
+    
+    echo ""
+    echo "Entering $dir/e4d_dev/third_party/tetgen1.5.0"
+    echo "make"
+    cd "$dir/e4d_dev/third_party/tetgen1.5.0"
+    make > make.log
+    tetgen="$dir/e4d_dev/third_party/tetgen1.5.0/tetgen"
+    if [ ! -f "$tetgen" ]; then
+        echo "Error: cannot find $tetgen"
+        echo "Failed to install Tetgen"
+        echo "See $dir/tetgen/make.log for more details"
+        return 0
+    fi
+    echo "Copying tetgen to $dir/bin"
+    cp $tetgen "$dir/bin"
+    echo "Tetgen has been successfully installed in $dir/bin"
+    return 1
+}
+
+function install_triangle
+{
+    echo ""
+    echo "============================== Install Triangle =============================="
+    echo ""
+    #echo "Entering $dir"
+    #echo "wget http://www.netlib.org/voronoi/triangle.zip"
+    #echo "unzip triangle.zip -d triangle"
+    #cd "$dir"
+    #wget -o /dev/null http://www.netlib.org/voronoi/triangle.zip
+    #unzip triangle.zip -d triangle > /dev/null
+    #if [ ! -e "$dir/triangle" ]; then
+    #    echo "Error: cannot download triangle.zip"
+    #    return 0
+    #fi
+    
+    echo ""
+    echo "Entering $dir/e4d_dev/third_party/triangle"
+    echo "unzip triangle.zip -d triangle"
+    cd "$dir/e4d_dev/third_party/triangle"
+    unzip triangle.zip -d triangle > /dev/null
+    echo "Entering $dir/e4d_dev/third_party/triangle/triangle"
+    echo "make"
+    cd "$dir/e4d_dev/third_party/triangle/triangle"
+    make > make.log
+    triangle="$dir/e4d_dev/third_party/triangle/triangle/triangle"
+    if [ ! -f "$triangle" ]; then
+        echo "Error: cannot find $triangle"
+        echo "Failed to install Triangle"
+        echo "See $dir/triangle/make.log for more details"
+        return 0
+    fi
+    echo "Copying triangle to $dir/bin"
+    cp $triangle "$dir/bin"
+    echo "Triangle has been successfully installed in $dir/bin"
+    return 1
+}
+
+function install_bx
+{
+    echo ""
+    echo "================================= Install Bx ================================="
+    echo ""
+    echo "Entering directory $dir"
+    echo "wget https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-4.7.3.tar.gz"
+    echo "tar -xvzf netcdf-c-4.7.3.tar.gz"
+    cd "$dir"
+    wget -o /dev/null https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-4.7.3.tar.gz
+    tar -xvzf netcdf-c-4.7.3.tar.gz > /dev/null
+    netcdf_dir="$dir/netcdf-c-4.7.3"
+    if [ ! -e "$netcdf_dir" ]; then
+        echo "Error: cannot download netcdf-c-4.7.3.tar.gz"
+        return 0
+    fi
+    
+    echo ""
+    echo "Entering $netcdf_dir"
+    echo "./configure --disable-netcdf-4 --disable-dap"        
+    cd "$netcdf_dir"
+    ./configure --disable-netcdf-4 --disable-dap > /dev/null
+    if [ ! -f "$netcdf_dir/Makefile" ]; then
+        echo "Error: cannot find $netcdf_dir/Makefile"
+        echo "Failed to install NetCDF"
+        echo "See $netcdf_dir/config.log for more details"
+        return 0
+    fi
+    if [ ! -f "$netcdf_dir/libtool" ]; then
+        echo "Error: cannot find $netcdf_dir/libtool"
+        echo "Failed to install NetCDF"
+        echo "See $netcdf_dir/config.log for more details"
+        return 0
+    fi
+    echo "make"
+    make > make.log
+    if [ ! -e "$netcdf_dir/liblib/.libs" ]; then
+        echo "Error: cannot find $netcdf_dir/liblib/.libs"
+        echo "Failed to install NetCDF"
+        echo "See $netcdf_dir/make.log for more details"
+        return 0
+    fi
+    
+    echo ""
+    echo "Entering $netcdf_dir/liblib"
+    echo "/bin/sh ../libtool --mode=install /usr/bin/install -c libnetcdf.la \"$dir/lib\""
+    cd "$netcdf_dir/liblib"
+    /bin/sh ../libtool --mode=install /usr/bin/install -c libnetcdf.la "$dir/lib" > install.log
+    echo "/bin/sh ../libtool --finish \"$dir/lib\""
+    /bin/sh ../libtool --finish "$dir/lib" >> install.log
+    if [ ! "$(ls -A $dir/lib)" ]; then
+        echo "Error: cannot find lib files in $dir/lib"
+        echo "Failed to install NetCDF"
+        echo "See $netcdf_dir/liblib/install.log for more details"
+        return 0
+    fi
+    
+    echo ""
+    echo "Entering directory $dir"
+    echo "git clone https://github.com/certik/exodus.git"
+    cd "$dir"
+    git clone --quiet https://github.com/certik/exodus.git > /dev/null
+    exodus_dir="$dir/exodus"
+    if [ ! -e "$exodus_dir" ]; then
+        echo "Error: cannot clone exodus"
+        return 0
+    fi
+    
+    echo ""
+    echo "Entering $exodus_dir/exodus"
+    echo "make -f Makefile.standalone"
+    cd "$exodus_dir/exodus"
+    sed -i "/^USING_NETCDF4/c\USING_NETCDF4 = \"NO\"" Makefile.standalone
+    sed -i "/^NETCDF = /c\NETCDF = $netcdf_dir" Makefile.standalone
+    make -f Makefile.standalone > make.log
+    if [ ! -f libexodus.a ]; then
+        echo ""
+        echo "Error: cannot find $dir/exodus/exodus/libexodus.a"
+        echo "Faield to install Exodus"
+        echo "See $exodus_dir/exodus/make.log for more details"
+        return 0
+    fi
+    if [ ! -f libexoIIv2for.a ]; then
+        echo ""
+        echo "Error: cannot find $dir/exodus/exodus/libexoIIv2for.a"
+        echo "Faield to install Exodus"
+        echo "See $exodus_dir/exodus/make.log for more details"
+        return 0
+    fi
+    
+    echo ""
+    echo "Entering $dir/e4d_dev/utilities/bx"
+    echo "make"
+    cd "$dir/e4d_dev/utilities/bx"
+    sed -i "/^EXODUS/c\EXODUS = $exodus_dir/exodus" Makefile
+    sed -i "/^NETCDF_LIB/c\NETCDF_LIB = -L$dir/lib -lnetcdf" Makefile
+    make > make.log
+    bx="$dir/e4d_dev/utilities/bx/bx"
+    if [ ! -f "$bx" ]; then
+        echo "Error: cannot find $bx"
+        echo "Failed to install Bx"
+        echo "See $dir/e4d_dev/utilities/bx/make.log for more details"
+        return 0
+    fi
+    echo "Copying bx to $dir/bin"
+    echo "Bx has been successfully installed in $dir/bin"
+    cp $bx "$dir/bin"
+    return 1
+}
+
+function install_px
+{
+    echo ""
+    echo "================================= Install Px ================================="
+    echo ""
+    #echo "Installing Px may require su privelege"
+    #echo "Bash installation is not supported at this moment"
+    #echo "Make sure pyinstaller is installed if not type"
+    #echo "sudo pip install pyinstaller"
+    #echo "Make sure numpy is installed if not type"
+    #echo "pip install numpy"
+    #echo "Make sure h5py is installed if not type"
+    #echo "pip install h5py"
+    #echo "Type the following to mannually install px"
+    #echo "cd $dir/e4d_dev/utilities/python/px"
+    #echo "pyinstaller -D -F -n px -c \"px.py\" or sudo pyinstaller -D -F -n px -c \"px.py\""
+    #echo "cp px \"$dir/bin\""
+    #return 0
+    
+    echo "Entering $dir/e4d_dev/utilities/python/px"
+    echo "pyinstaller -D -F -n px -c \"px.py\""
+    cd "$dir/e4d_dev/utilities/python/px"
+    pyinstaller=`which pyinstaller`
+    if [ "$pyinstaller" = "" ]; then
+        echo "Error: cannot find command 'pyinstaller'"
+        echo "Failed to install px"
+        return 0
+    fi
+    pyinstaller -D -F -n px -c "px.py" > install.log
+    px="$dir/e4d_dev/utilities/python/px/dist/px"
+    if [ ! -f "$px" ]; then
+        echo "Error: cannot find $px"
+        echo "Failed to install Px"
+        echo "See $dir/e4d_dev/utilities/python/px/install.log for more details"
+        echo ""
+        echo "Make sure pyinstaller is installed if not type"
+        echo "sudo pip install pyinstaller"
+        echo "Make sure numpy is installed if not type"
+        echo "pip install numpy"
+        echo "Make sure h5py is installed if not type"
+        echo "pip install h5py"
+        echo "Make sure pyinstaller does not require su privelege if yes type"
+        echo "su pyinstaller -D -F -n px -c \"px.py\""
+        return 0
+    fi
+    echo "Copying px to $dir/bin"
+    echo "Px has been successfully installed in $dir/bin"
+    cp $px "$dir/bin"
+    return 1
+}
+
+[ "$build_tetgen" = "true" ] && install_tetgen
+[ "$build_triangle" = "true" ] && install_triangle
+[ "$build_bx" = "true" ] && install_bx
+[ "$build_px" = "true" ] && install_px
+
+#
+# Export PATH and LD_LIBRARY_PATH
+#
+echo ""
+echo "=============================================================================="
+echo ""
+echo "If you want to add e4d to your path for the current session then type"
+echo "source \"$dir/set_env.sh\""
+echo ""
+echo "If you want to add e4d to your path permanently then type"
+echo "echo \"export PATH=$dir/bin:\\\$PATH\" >> ~/.bashrc"
+echo "export PATH=$dir/bin:\$PATH" > "$dir/set_env.sh"
+if [ "$(ls -A "$dir/lib")" ]; then
+    if [ "$LD_LIBRARY_PATH" = "" ]; then
+        echo "echo \"export LD_LIBRARY_PATH=$dir/lib\" >> ~/.bashrc"
+        echo "export LD_LIBRARY_PATH=$dir/lib" >> "$dir/set_env.sh"
+    else
+        echo "echo \"export LD_LIBRARY_PATH=$dir/lib:\\\$LD_LIBRARY_PATH\" >> ~/.bashrc"
+        echo "export LD_LIBRARY_PATH=$dir/lib:\$LD_LIBRARY_PATH" >> "$dir/set_env.sh"
+    fi
+else
+    rm -r "$dir/lib"
+fi
+rm "$dir"/*.tar.gz 2> /dev/null
+rm "$dir"/*.zip 2> /dev/null
+echo ""
