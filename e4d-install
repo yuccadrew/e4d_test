@@ -193,7 +193,7 @@ if [ "$imi" != "" ]; then
 fi
 
 #
-# If commands git & m4 & gfortran & python2.7 are not found then exit
+# If commands git & m4 & gfortran & python are not found then exit
 #
 git=`which git`
 m4=`which m4`
@@ -202,7 +202,7 @@ gcc=`which gcc`
 gpp=`which g++`
 make=`which make`
 unzip=`which unzip`
-python=`which python2.7`
+python=`which python`
 if [ "$git" = "" ]; then
     echo ""
     echo "Error: cannot find command 'git'"
@@ -247,7 +247,7 @@ if [ "$unzip" = "" ]; then
 fi
 if [ "$python" = "" ]; then
     echo ""
-    echo "Error: cannot find command 'python2.7'"
+    echo "Error: cannot find command 'python'"
     echo ""
     exit 3
 fi
@@ -263,8 +263,31 @@ echo "$dir"
 # If the installation directory doesn't exist, create it.
 #
 [ ! -e "$dir" ] && mkdir "$dir"
-[ ! -e "$dir/bin" ] && mkdir "$dir/bin"
-[ ! -e "$dir/lib" ] && mkdir "$dir/lib"
+
+#
+# If git clone E4D is not successful then exit.
+#
+echo "Entering $dir"
+echo "git clone -b master https://github.com/pnnl/E4D.git e4d_dev"
+cd "$dir"
+git clone -b master --quiet https://github.com/pnnl/E4D.git e4d_dev
+#hg clone https://john775@bitbucket.org/john775/e4d_dev > /dev/null
+if [ ! -e "$dir/e4d_dev" ]; then
+    echo "Error: cannot clone e4d_dev"
+    exit 2
+fi
+if [ "$imi" = "" ]; then
+    makefile="Makefile"
+else
+    cp -pr "$imi" "$dir/e4d_dev/src"
+    makefile="Makefile.imi"
+fi
+
+#
+# If the bin or lib directory doesn't exist, create it.
+#
+[ ! -e "$dir/e4d_dev/bin" ] && mkdir "$dir/e4d_dev/bin"
+[ ! -e "$dir/e4d_dev/lib" ] && mkdir "$dir/e4d_dev/lib"
 
 #
 # If with-petsc is not specified then install PETSc.
@@ -319,28 +342,10 @@ if [ "$petsc_dir" = "" ]; then
 fi
 
 #
-# Download and install E4D with or without IMI module
+# Install E4D with or without IMI module
 #
 echo ""
 echo "================================ Install E4D ================================="
-echo ""
-echo "Entering $dir"
-#echo "hg clone https://john775@bitbucket.org/john775/e4d_dev"
-echo "git clone -b master https://github.com/pnnl/E4D.git e4d_dev"
-cd "$dir"
-#hg clone https://john775@bitbucket.org/john775/e4d_dev > /dev/null
-git clone -b master --quiet https://github.com/pnnl/E4D.git e4d_dev
-#git clone -b develop --quiet https://github.com/pnnl/E4D.git e4d_dev
-if [ ! -e "$dir/e4d_dev" ]; then
-    echo "Error: cannot clone e4d_dev"
-fi
-if [ "$imi" = "" ]; then
-    makefile="Makefile"
-else
-    cp -pr "$imi" "$dir/e4d_dev/src"
-    makefile="Makefile.imi"
-fi
-
 echo ""
 echo "Entering $dir/e4d_dev/src"
 echo "make -f $makefile"
@@ -357,9 +362,9 @@ if [ ! -f "$e4d" ]; then
     echo ""
     exit 2
 fi
-echo "Copying e4d to $dir/bin"
-cp $e4d "$dir/bin"
-echo "E4D has been successfully installed in $dir/bin"
+echo "Copying e4d to $dir/e4d_dev/bin"
+cp $e4d "$dir/e4d_dev/bin"
+echo "E4D has been successfully installed in $dir/e4d_dev/bin"
 
 function install_tetgen
 {    
@@ -379,6 +384,8 @@ function install_tetgen
     echo "Entering $dir/e4d_dev/third_party/tetgen1.5.0"
     echo "make"
     cd "$dir/e4d_dev/third_party/tetgen1.5.0"
+    rm *.o
+    rm tetgen
     make > make.log
     tetgen="$dir/e4d_dev/third_party/tetgen1.5.0/tetgen"
     if [ ! -f "$tetgen" ]; then
@@ -387,9 +394,9 @@ function install_tetgen
         echo "See $dir/tetgen/make.log for more details"
         return 0
     fi
-    echo "Copying tetgen to $dir/bin"
-    cp $tetgen "$dir/bin"
-    echo "Tetgen has been successfully installed in $dir/bin"
+    echo "Copying tetgen to $dir/e4d_dev/bin"
+    cp $tetgen "$dir/e4d_dev/bin"
+    echo "Tetgen has been successfully installed in $dir/e4d_dev/bin"
     return 1
 }
 
@@ -417,6 +424,8 @@ function install_triangle
     echo "Entering $dir/e4d_dev/third_party/triangle/triangle"
     echo "make"
     cd "$dir/e4d_dev/third_party/triangle/triangle"
+    rm *.o
+    rm triangle
     make > make.log
     triangle="$dir/e4d_dev/third_party/triangle/triangle/triangle"
     if [ ! -f "$triangle" ]; then
@@ -425,9 +434,9 @@ function install_triangle
         echo "See $dir/triangle/make.log for more details"
         return 0
     fi
-    echo "Copying triangle to $dir/bin"
-    cp $triangle "$dir/bin"
-    echo "Triangle has been successfully installed in $dir/bin"
+    echo "Copying triangle to $dir/e4d_dev/bin"
+    cp $triangle "$dir/e4d_dev/bin"
+    echo "Triangle has been successfully installed in $dir/e4d_dev/bin"
     return 1
 }
 
@@ -436,15 +445,18 @@ function install_bx
     echo ""
     echo "================================= Install Bx ================================="
     echo ""
-    echo "Entering directory $dir"
-    echo "wget https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-4.7.3.tar.gz"
-    echo "tar -xvzf netcdf-c-4.7.3.tar.gz"
-    cd "$dir"
-    wget -o /dev/null https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-4.7.3.tar.gz
-    tar -xvzf netcdf-c-4.7.3.tar.gz > /dev/null
-    netcdf_dir="$dir/netcdf-c-4.7.3"
+    echo "Entering directory $dir/e4d_dev/third_party"
+    echo "wget https://downloads.unidata.ucar.edu/netcdf-c/4.9.0/netcdf-c-4.9.0.tar.gz"
+    #echo "git clone https://github.com/Unidata/netcdf-c.git netcdf-c"
+    #echo "wget https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-4.7.3.tar.gz"
+    echo "tar -xvzf netcdf-c-4.9.0.tar.gz"
+    cd "$dir/e4d_dev/third_party"
+    wget -o /dev/null https://downloads.unidata.ucar.edu/netcdf-c/4.9.0/netcdf-c-4.9.0.tar.gz
+    tar -xvzf netcdf-c-4.9.0.tar.gz > /dev/null
+    netcdf_dir="$dir/e4d_dev/third_party/netcdf-c-4.9.0"
     if [ ! -e "$netcdf_dir" ]; then
-        echo "Error: cannot download netcdf-c-4.7.3.tar.gz"
+        echo "$netcdf_dir"
+        echo "Error: cannot download netcdf-c-4.9.0"
         return 0
     fi
     
@@ -476,24 +488,24 @@ function install_bx
     
     echo ""
     echo "Entering $netcdf_dir/liblib"
-    echo "/bin/sh ../libtool --mode=install /usr/bin/install -c libnetcdf.la \"$dir/lib\""
+    echo "/bin/sh ../libtool --mode=install /usr/bin/install -c libnetcdf.la \"$dir/e4d_dev/lib\""
     cd "$netcdf_dir/liblib"
-    /bin/sh ../libtool --mode=install /usr/bin/install -c libnetcdf.la "$dir/lib" > install.log
-    echo "/bin/sh ../libtool --finish \"$dir/lib\""
-    /bin/sh ../libtool --finish "$dir/lib" >> install.log
-    if [ ! "$(ls -A $dir/lib)" ]; then
-        echo "Error: cannot find lib files in $dir/lib"
+    /bin/sh ../libtool --mode=install /usr/bin/install -c libnetcdf.la "$dir/e4d_dev/lib" > install.log
+    echo "/bin/sh ../libtool --finish \"$dir/e4d_dev/lib\""
+    /bin/sh ../libtool --finish "$dir/e4d_dev/lib" >> install.log
+    if [ ! "$(ls -A $dir/e4d_dev/lib)" ]; then
+        echo "Error: cannot find lib files in $dir/e4d_dev/lib"
         echo "Failed to install NetCDF"
         echo "See $netcdf_dir/liblib/install.log for more details"
         return 0
     fi
     
     echo ""
-    echo "Entering directory $dir"
+    echo "Entering directory $dir/e4d_dev/third_party"
     echo "git clone https://github.com/certik/exodus.git"
-    cd "$dir"
+    cd "$dir/e4d_dev/third_party"
     git clone --quiet https://github.com/certik/exodus.git > /dev/null
-    exodus_dir="$dir/exodus"
+    exodus_dir="$dir/e4d_dev/third_party/exodus"
     if [ ! -e "$exodus_dir" ]; then
         echo "Error: cannot clone exodus"
         return 0
@@ -526,7 +538,9 @@ function install_bx
     echo "make"
     cd "$dir/e4d_dev/utilities/bx"
     sed -i "/^EXODUS/c\EXODUS = $exodus_dir/exodus" Makefile
-    sed -i "/^NETCDF_LIB/c\NETCDF_LIB = -L$dir/lib -lnetcdf" Makefile
+    sed -i "/^NETCDF_LIB/c\NETCDF_LIB = -L$dir/e4d_dev/lib -lnetcdf" Makefile
+    rm *.o
+    rm bx
     make > make.log
     bx="$dir/e4d_dev/utilities/bx/bx"
     if [ ! -f "$bx" ]; then
@@ -535,9 +549,9 @@ function install_bx
         echo "See $dir/e4d_dev/utilities/bx/make.log for more details"
         return 0
     fi
-    echo "Copying bx to $dir/bin"
-    echo "Bx has been successfully installed in $dir/bin"
-    cp $bx "$dir/bin"
+    echo "Copying bx to $dir/e4d_dev/bin"
+    echo "Bx has been successfully installed in $dir/e4d_dev/bin"
+    cp $bx "$dir/e4d_dev/bin"
     return 1
 }
 
@@ -557,7 +571,7 @@ function install_px
     #echo "Type the following to mannually install px"
     #echo "cd $dir/e4d_dev/utilities/python/px"
     #echo "pyinstaller -D -F -n px -c \"px.py\" or sudo pyinstaller -D -F -n px -c \"px.py\""
-    #echo "cp px \"$dir/bin\""
+    #echo "cp px \"$dir/e4d_dev/bin\""
     #return 0
     
     echo "Entering $dir/e4d_dev/utilities/python/px"
@@ -586,9 +600,9 @@ function install_px
         echo "su pyinstaller -D -F -n px -c \"px.py\""
         return 0
     fi
-    echo "Copying px to $dir/bin"
-    echo "Px has been successfully installed in $dir/bin"
-    cp $px "$dir/bin"
+    echo "Copying px to $dir/e4d_dev/bin"
+    echo "Px has been successfully installed in $dir/e4d_dev/bin"
+    cp $px "$dir/e4d_dev/bin"
     return 1
 }
 
@@ -604,21 +618,21 @@ echo ""
 echo "=============================================================================="
 echo ""
 echo "If you want to add e4d to your path for the current session then type"
-echo "source \"$dir/set_env.sh\""
+echo "source \"$dir/e4d_dev/set_env.sh\""
 echo ""
 echo "If you want to add e4d to your path permanently then type"
-echo "echo \"export PATH=$dir/bin:\\\$PATH\" >> ~/.bashrc"
-echo "export PATH=$dir/bin:\$PATH" > "$dir/set_env.sh"
-if [ "$(ls -A "$dir/lib")" ]; then
+echo "echo \"export PATH=$dir/e4d_dev/bin:\\\$PATH\" >> ~/.bashrc"
+echo "export PATH=$dir/e4d_dev/bin:\$PATH" > "$dir/e4d_dev/set_env.sh"
+if [ "$(ls -A "$dir/e4d_dev/lib")" ]; then
     if [ "$LD_LIBRARY_PATH" = "" ]; then
-        echo "echo \"export LD_LIBRARY_PATH=$dir/lib\" >> ~/.bashrc"
-        echo "export LD_LIBRARY_PATH=$dir/lib" >> "$dir/set_env.sh"
+        echo "echo \"export LD_LIBRARY_PATH=$dir/e4d_dev/lib\" >> ~/.bashrc"
+        echo "export LD_LIBRARY_PATH=$dir/e4d_dev/lib" >> "$dir/e4d_dev/set_env.sh"
     else
-        echo "echo \"export LD_LIBRARY_PATH=$dir/lib:\\\$LD_LIBRARY_PATH\" >> ~/.bashrc"
-        echo "export LD_LIBRARY_PATH=$dir/lib:\$LD_LIBRARY_PATH" >> "$dir/set_env.sh"
+        echo "echo \"export LD_LIBRARY_PATH=$dir/e4d_dev/lib:\\\$LD_LIBRARY_PATH\" >> ~/.bashrc"
+        echo "export LD_LIBRARY_PATH=$dir/e4d_dev/lib:\$LD_LIBRARY_PATH" >> "$dir/e4d_dev/set_env.sh"
     fi
 else
-    rm -r "$dir/lib"
+    rm -r "$dir/e4d_dev/lib"
 fi
 rm "$dir"/*.tar.gz 2> /dev/null
 rm "$dir"/*.zip 2> /dev/null
