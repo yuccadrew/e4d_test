@@ -129,21 +129,21 @@ fi
 #
 # If the directory exists but is not empty then exit.
 #
-if [ -e "$dir" ]; then
-    if [ "$(ls -A "$dir")" ]; then
-        echo ""
-        echo "Warning: $dir already exists and is not an empty directory"
-        read -r -p "Do you want to continue? [y/N] " response
-        case "$response" in
-            [yY][eE][sS]|[yY])
-                ;;
-            *)
-                exit 3
-                ;;
-        esac
-        #echo ""
-    fi
-fi
+#if [ -e "$dir" ]; then
+#    if [ "$(ls -A "$dir")" ]; then
+#        echo ""
+#        echo "Warning: $dir already exists and is not an empty directory"
+#        read -r -p "Do you want to continue? [y/N] " response
+#        case "$response" in
+#            [yY][eE][sS]|[yY])
+#                ;;
+#            *)
+#                exit 3
+#                ;;
+#        esac
+#        #echo ""
+#    fi
+#fi
 
 #
 # If with-petsc is on but mpirun is not found then exit.
@@ -591,7 +591,7 @@ function install_px
         echo "See $dir/e4d_dev/utilities/python/px/install.log for more details"
         echo ""
         echo "Make sure pyinstaller is installed if not type"
-        echo "sudo pip install pyinstaller"
+        echo "pip install pyinstaller"
         echo "Make sure numpy is installed if not type"
         echo "pip install numpy"
         echo "Make sure h5py is installed if not type"

@@ -9,13 +9,12 @@ import subprocess
 import sys
 
 root=os.getcwd()
-mpirun=root+'/codes/petsc/arch-linux2-c-opt/bin/mpirun'
-e4d=root+'/codes/updates/bin/e4d'
-tetgen=root+'/codes/updates/bin/tetgen'
-triangle=root+'/codes/updates/bin/triangle'
-#bx=root+'/codes/bin/bx'
-bx=root+'/codes/updates/bin/px'
-px=root+'/codes/updates/bin/px'
+mpirun='/shared/E4D/petsc/arch-linux-c-opt/bin/mpirun'
+e4d=root+'/e4d_dev/bin/e4d'
+tetgen=root+'/e4d_dev/bin/tetgen'
+triangle=root+'/e4d_dev/bin/triangle'
+bx=root+'/e4d_dev/bin/bx'
+px=root+'/e4d_dev/bin/px'
 nproc=7
 #modes=['ERT1','ERTAnalytic','ERT2','ERT3']
 #modes=modes+['ERT1-IMI','ERT2-IMI','ERT3-IMI']
@@ -23,6 +22,7 @@ nproc=7
 #modes=modes+['SIP1-IMI','SIP2-IMI','SIP3-IMI']
 #modes=modes+['ERTtank1','ERTtank2','ERTtank3']
 #modes=modes+['SIPtank1','SIPtank2','SIPtank3']
+os.environ['LD_LIBRARY_PATH'] = root+'/e4d_dev/lib'
 
 def set_globvars_fmm(prefix):
     global cfgfile,nodefile,elefile,trnfile,srvfile_fmm
@@ -2484,12 +2484,13 @@ def run_tutorials(modes):
         print('')
         print_splitter('Validate TetGen Version','=',80)
 
-        sdir=root+'/codes/extensions/tetgen'
+        sdir=root+'/include/tetgen'
         wdir=root+'/Req_2.0_TetGen'
         myrmtree(wdir)
         mymkdir(wdir)
         mycopyfile(sdir+'/200EW_T.cfg',wdir+'/200EW_T.cfg')
         mycopyfile(sdir+'/200EW_T.1.ele',wdir+'/200EW_T.1.ele.standard')
+        mycopyfile(sdir+'/diff.sh',wdir+'/diff.sh')
 
         #Update tetgen/triangle/bx path
         print('')
@@ -2513,7 +2514,8 @@ def run_tutorials(modes):
             process.wait()
        
         #Use the diff function in linux and pipe the results to a file
-        process=subprocess.Popen('diff %s %s.standard > check.txt'%(elefile,elefile),shell=True)
+        #command = 'diff <(head -n -1 %s) <(head -n -1 %s.standard) > check.txt'%(elefile,elefile)
+        process=subprocess.Popen('bash diff.sh',shell=True)
         process.wait()
         
         print('Requirement_0.1.0: Check mesh quality using installed tetgen version')
@@ -2532,11 +2534,11 @@ def run_tutorials(modes):
 
         #print('')
         #print('tar -C . -xzvf codes/e4d_dev/tutorial/mode_1/two_blocks.tgz')
-        sdir=root+'/codes/updates/e4d_dev/tutorial/mode_1'
+        sdir=root+'/e4d_dev/tutorial/mode_1'
         process=subprocess.Popen(['tar','-C',sdir,'-xzvf',sdir+'/two_blocks.tgz'],stdout=subprocess.DEVNULL)
         process.wait()
 
-        sdir=root+'/codes/updates/e4d_dev/tutorial/mode_1/two_blocks'
+        sdir=root+'/e4d_dev/tutorial/mode_1/two_blocks'
         wdir=root+'/Req_2.0_ERT1'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -2589,7 +2591,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Test file setup for Run Mode ERTAnalytic','=',80)
 
-        sdir=root+'/codes/updates/e4d_dev/tutorial/mode_2/two_blocks'
+        sdir=root+'/e4d_dev/tutorial/mode_2/two_blocks'
         wdir=root+'/Req_3.0_ERTAnalytic'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -2675,7 +2677,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Test file setup for Run Mode ERT2','=',80)
 
-        sdir=root+'/codes/updates/e4d_dev/tutorial/mode_2/two_blocks'
+        sdir=root+'/e4d_dev/tutorial/mode_2/two_blocks'
         wdir=root+'/Req_3.0_ERT2'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -2766,7 +2768,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Testing file setup for Run Mode ERT3','=',80)
 
-        sdir=root+'/codes/updates/e4d_dev/tutorial/mode_3/two_blocks'
+        sdir=root+'/e4d_dev/tutorial/mode_3/two_blocks'
         wdir=root+'/Req_4.0_ERT3'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -2848,7 +2850,7 @@ def run_tutorials(modes):
         print_splitter('Run Mode ERT4','=',80)
 
         if False:
-            sdir=root+'/codes/updates/e4d_dev/tutorial/mode_4/sinking_plume'
+            sdir=root+'/e4d_dev/tutorial/mode_4/sinking_plume'
             wdir=root+'/Req_4.0_ERT4'
             myrmtree(wdir)
             mycopytree(sdir,wdir)
@@ -2859,7 +2861,7 @@ def run_tutorials(modes):
             process=subprocess.Popen(['tar','-C',wdir,'-xzvf',wdir+'/surveys.tgz','--strip-components=1'],stdout=subprocess.DEVNULL)
             process.wait()
         else:
-            sdir=root+'/codes/updates/e4d_dev/tutorial_JupyterLab/Electrical Methods/Time-lapse inverse modeling/mode_ERT4/sinking_plume/inverse/time_lapse'
+            sdir=root+'/e4d_dev/tutorial_JupyterLab/Electrical Methods/Time-lapse inverse modeling/mode_ERT4/sinking_plume/inverse/time_lapse'
             wdir=root+'/Req_4.0_ERT4'
             myrmtree(wdir)
             mycopytree(sdir,wdir)
@@ -2912,11 +2914,11 @@ def run_tutorials(modes):
 
         #print('')
         #print('tar -C . -xzvf codes/e4d_dev/tutorial/mode_1/mbsl.tgz')
-        sdir=root+'/codes/updates/e4d_dev/tutorial/mode_1'
+        sdir=root+'/e4d_dev/tutorial/mode_1'
         process=subprocess.Popen(['tar','-C',sdir,'-xzvf',sdir+'/mbsl.tgz'],stdout=subprocess.DEVNULL)
         process.wait()
 
-        sdir=root+'/codes/updates/e4d_dev/tutorial/mode_1/metal_box_sheet_line'
+        sdir=root+'/e4d_dev/tutorial/mode_1/metal_box_sheet_line'
         wdir=root+'/Req_2.0_ERT1-IMI'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -2969,7 +2971,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Test file setup for Run Mode ERT2 (IMI)','=',80)
 
-        sdir=root+'/codes/updates/e4d_dev/tutorial/mode_2/metal_box_sheet_line'
+        sdir=root+'/e4d_dev/tutorial/mode_2/metal_box_sheet_line'
         wdir=root+'/Req_3.0_ERT2-IMI'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -3052,7 +3054,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Test file set up for Run Mode ERT3 (IMI)','=',80)
 
-        sdir=root+'/codes/updates/e4d_dev/tutorial/mode_3/metal_box_sheet_line'
+        sdir=root+'/e4d_dev/tutorial/mode_3/metal_box_sheet_line'
         wdir=root+'/Req_4.0_ERT3-IMI'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -3133,7 +3135,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Testing file setup for Run Mode SIP1','=',80)
         
-        sdir=root+'/codes/updates/e4d_dev/tutorial_JupyterLab/Electrical Methods/Mesh generation/mode_SIP1/two_blocks'
+        sdir=root+'/e4d_dev/tutorial_JupyterLab/Electrical Methods/Mesh generation/mode_SIP1/two_blocks'
         wdir=root+'/Req_2.0_SIP1'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -3185,7 +3187,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Testing file setup for Run Mode SIP2','=',80)
 
-        sdir=root+'/codes/updates/e4d_dev/tutorial_JupyterLab/Electrical Methods/Forward modeling/mode_SIP2/two_blocks'
+        sdir=root+'/e4d_dev/tutorial_JupyterLab/Electrical Methods/Forward modeling/mode_SIP2/two_blocks'
         wdir=root+'/Req_3.0_SIP2'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -3281,7 +3283,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Run Mode SIP2 (IMI)','=',80)
 
-        sdir=root+'/codes/updates/e4d_dev/tutorial/mode_22/metal_box_sheet_line'
+        sdir=root+'/e4d_dev/tutorial/mode_22/metal_box_sheet_line'
         wdir=root+'/Req_3.0_SIP2-IMI'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -3369,7 +3371,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Run Mode ERTtank1','=',80)
 
-        sdir=root+'/codes/updates/e4d_dev/tutorial/mode_31/tank'
+        sdir=root+'/e4d_dev/tutorial/mode_31/tank'
         wdir=root+'/Req_2.0_ERTtank1'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -3422,7 +3424,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Run Mode ERTtank2','=',80)
 
-        sdir=root+'/codes/updates/e4d_dev/tutorial/mode_32/tank'
+        sdir=root+'/e4d_dev/tutorial/mode_32/tank'
         wdir=root+'/Req_3.0_ERTtank2'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -3511,7 +3513,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Run Mode SIPtank1','=',80)
 
-        sdir=root+'/codes/updates/e4d_dev/tutorial/mode_41/tank'
+        sdir=root+'/e4d_dev/tutorial/mode_41/tank'
         wdir=root+'/Req_2.0_SIPtank1'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -3564,7 +3566,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Run Mode SIPtank2','=',80)
 
-        sdir=root+'/codes/updates/e4d_dev/tutorial/mode_42/tank'
+        sdir=root+'/e4d_dev/tutorial/mode_42/tank'
         wdir=root+'/Req_3.0_SIPtank2'
         myremove(sdir+'/.#pots.txt')
         myrmtree(wdir)
@@ -3653,7 +3655,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Run Mode 2 (FMM)','=',80)
 
-        sdir=root+'/codes/extensions/mode_2/borehole'
+        sdir=root+'/include/mode_2/borehole'
         wdir=root+'/Req_3.0_FMM2'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -3710,7 +3712,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Run Mode 3 (FMM)','=',80)
 
-        sdir=root+'/codes/extensions/mode_3/borehole'
+        sdir=root+'/include/mode_3/borehole'
         wdir=root+'/Req_4.0_FMM3'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
