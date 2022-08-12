@@ -244,9 +244,7 @@ def test_case(case):
     
     elif case=='px':
         #Check requirements for px command line input
-        print(root+'/Req_5.1')
         if not os.path.isdir(root+'/Req_5.1'):
-            print('True')
             process=subprocess.Popen('cp -pr include/px '+root+'/Req_5.1',shell=True)
             process.wait()
         else:
