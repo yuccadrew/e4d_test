@@ -634,6 +634,6 @@ if [ "$(ls -A "$dir/e4d_dev/lib")" ]; then
 else
     rm -r "$dir/e4d_dev/lib"
 fi
-rm "$dir"/*.tar.gz 2> /dev/null
-rm "$dir"/*.zip 2> /dev/null
+#rm "$dir"/*.tar.gz 2> /dev/null
+#rm "$dir"/*.zip 2> /dev/null
 echo ""
