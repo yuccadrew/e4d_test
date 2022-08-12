@@ -33,18 +33,20 @@ cp -p Test_Matrix.py scripts
 #cp -pr extensions scripts
 rm scripts.tar.gz
 tar -czvf scripts.tar.gz scripts
-echo "done with compressing"
+echo "done with compression"
 
 echo ""
 echo "installing e4d ..."
 cd /home/zhuy359/projects/e4d_test
 rm -rf e4d_dev
 bash e4d-install -with-petsc /shared/E4D/petsc -with-imi include/IMI.F90 -build-tetgen -build-triangle -build-bx -build-px . > report.log 2> error.log
+echo "done with e4d installation"
 
 echo ""
 echo "validating e4d ..."
 cd /home/zhuy359/projects/e4d_test 
 python Test_Matrix.py > report.txt 2> error.txt
+echo "done with e4d validation"
 
 #echo -e "Dear E4D Developers:\n\n\
 #Please find attached report.txt for all E4D test results and error.txt for error messages.\n\
