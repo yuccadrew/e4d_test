@@ -9,6 +9,7 @@ import subprocess
 import sys
 
 root=os.getcwd()
+e4d_install = root+'/e4d_dev'
 mpirun='/shared/E4D/petsc/arch-linux-c-opt/bin/mpirun'
 e4d=root+'/e4d_dev/bin/e4d'
 tetgen=root+'/e4d_dev/bin/tetgen'
@@ -16,6 +17,7 @@ triangle=root+'/e4d_dev/bin/triangle'
 bx=root+'/e4d_dev/bin/bx'
 px=root+'/e4d_dev/bin/px'
 nproc=7
+
 #modes=['ERT1','ERTAnalytic','ERT2','ERT3']
 #modes=modes+['ERT1-IMI','ERT2-IMI','ERT3-IMI']
 #modes=modes+['SIP1','SIP2','SIP3']
@@ -23,6 +25,26 @@ nproc=7
 #modes=modes+['ERTtank1','ERTtank2','ERTtank3']
 #modes=modes+['SIPtank1','SIPtank2','SIPtank3']
 os.environ['LD_LIBRARY_PATH'] = root+'/e4d_dev/lib'
+
+if not os.path.isdir(root+'/tutorial'):
+    process=subprocess.Popen('cp -pr '+e4d_install+'/tutorial '+root,shell=True)
+    process.wait()
+else:
+    process=subprocess.Popen('rm -rf '+root+'/tutorial',shell=True)
+    process.wait()
+
+    process=subprocess.Popen('cp -pr '+e4d_install+'/tutorial '+root,shell=True)
+    process.wait()
+    
+if not os.path.isdir(root+'/tutorial_JupyterLab'):
+    process=subprocess.Popen('cp -pr '+e4d_install+'/tutorial_JupyterLab '+root,shell=True)
+    process.wait()
+else:
+    process=subprocess.Popen('rm -rf '+root+'/tutorial_JupyterLab',shell=True)
+    process.wait()
+
+    process=subprocess.Popen('cp -pr '+e4d_install+'/tutorial_JupyterLab '+root,shell=True)
+    process.wait()
 
 def set_globvars_fmm(prefix):
     global cfgfile,nodefile,elefile,trnfile,srvfile_fmm
@@ -222,8 +244,10 @@ def test_case(case):
     
     elif case=='px':
         #Check requirements for px command line input
+        print(root+'/Req_5.1')
         if not os.path.isdir(root+'/Req_5.1'):
-            process=subprocess.Popen('cp -pr include/px '+root+'Req_5.1',shell=True)
+            print('True')
+            process=subprocess.Popen('cp -pr include/px '+root+'/Req_5.1',shell=True)
             process.wait()
         else:
             process=subprocess.Popen('rm -rf '+root+'/Req_5.1',shell=True)
@@ -2544,11 +2568,11 @@ def run_tutorials(modes):
 
         #print('')
         #print('tar -C . -xzvf codes/e4d_dev/tutorial/mode_1/two_blocks.tgz')
-        sdir=root+'/e4d_dev/tutorial/mode_1'
+        sdir=root+'/tutorial/mode_1'
         process=subprocess.Popen(['tar','-C',sdir,'-xzvf',sdir+'/two_blocks.tgz'],stdout=subprocess.DEVNULL)
         process.wait()
 
-        sdir=root+'/e4d_dev/tutorial/mode_1/two_blocks'
+        sdir=root+'/tutorial/mode_1/two_blocks'
         wdir=root+'/Req_2.0_ERT1'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -2601,7 +2625,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Test file setup for Run Mode ERTAnalytic','=',80)
 
-        sdir=root+'/e4d_dev/tutorial/mode_2/two_blocks'
+        sdir=root+'/tutorial/mode_2/two_blocks'
         wdir=root+'/Req_3.0_ERTAnalytic'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -2687,7 +2711,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Test file setup for Run Mode ERT2','=',80)
 
-        sdir=root+'/e4d_dev/tutorial/mode_2/two_blocks'
+        sdir=root+'/tutorial/mode_2/two_blocks'
         wdir=root+'/Req_3.0_ERT2'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -2778,7 +2802,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Testing file setup for Run Mode ERT3','=',80)
 
-        sdir=root+'/e4d_dev/tutorial/mode_3/two_blocks'
+        sdir=root+'/tutorial/mode_3/two_blocks'
         wdir=root+'/Req_4.0_ERT3'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -2860,7 +2884,7 @@ def run_tutorials(modes):
         print_splitter('Run Mode ERT4','=',80)
 
         if False:
-            sdir=root+'/e4d_dev/tutorial/mode_4/sinking_plume'
+            sdir=root+'/tutorial/mode_4/sinking_plume'
             wdir=root+'/Req_4.0_ERT4'
             myrmtree(wdir)
             mycopytree(sdir,wdir)
@@ -2871,7 +2895,7 @@ def run_tutorials(modes):
             process=subprocess.Popen(['tar','-C',wdir,'-xzvf',wdir+'/surveys.tgz','--strip-components=1'],stdout=subprocess.DEVNULL)
             process.wait()
         else:
-            sdir=root+'/e4d_dev/tutorial_JupyterLab/Electrical Methods/Time-lapse inverse modeling/mode_ERT4/sinking_plume/inverse/time_lapse'
+            sdir=root+'/tutorial_JupyterLab/Electrical Methods/Time-lapse inverse modeling/mode_ERT4/sinking_plume/inverse/time_lapse'
             wdir=root+'/Req_4.0_ERT4'
             myrmtree(wdir)
             mycopytree(sdir,wdir)
@@ -2924,11 +2948,11 @@ def run_tutorials(modes):
 
         #print('')
         #print('tar -C . -xzvf codes/e4d_dev/tutorial/mode_1/mbsl.tgz')
-        sdir=root+'/e4d_dev/tutorial/mode_1'
+        sdir=root+'/tutorial/mode_1'
         process=subprocess.Popen(['tar','-C',sdir,'-xzvf',sdir+'/mbsl.tgz'],stdout=subprocess.DEVNULL)
         process.wait()
 
-        sdir=root+'/e4d_dev/tutorial/mode_1/metal_box_sheet_line'
+        sdir=root+'/tutorial/mode_1/metal_box_sheet_line'
         wdir=root+'/Req_2.0_ERT1-IMI'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -2981,7 +3005,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Test file setup for Run Mode ERT2 (IMI)','=',80)
 
-        sdir=root+'/e4d_dev/tutorial/mode_2/metal_box_sheet_line'
+        sdir=root+'/tutorial/mode_2/metal_box_sheet_line'
         wdir=root+'/Req_3.0_ERT2-IMI'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -3064,7 +3088,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Test file set up for Run Mode ERT3 (IMI)','=',80)
 
-        sdir=root+'/e4d_dev/tutorial/mode_3/metal_box_sheet_line'
+        sdir=root+'/tutorial/mode_3/metal_box_sheet_line'
         wdir=root+'/Req_4.0_ERT3-IMI'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -3145,7 +3169,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Testing file setup for Run Mode SIP1','=',80)
         
-        sdir=root+'/e4d_dev/tutorial_JupyterLab/Electrical Methods/Mesh generation/mode_SIP1/two_blocks'
+        sdir=root+'/tutorial_JupyterLab/Electrical Methods/Mesh generation/mode_SIP1/two_blocks'
         wdir=root+'/Req_2.0_SIP1'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -3197,7 +3221,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Testing file setup for Run Mode SIP2','=',80)
 
-        sdir=root+'/e4d_dev/tutorial_JupyterLab/Electrical Methods/Forward modeling/mode_SIP2/two_blocks'
+        sdir=root+'/tutorial_JupyterLab/Electrical Methods/Forward modeling/mode_SIP2/two_blocks'
         wdir=root+'/Req_3.0_SIP2'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -3293,7 +3317,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Run Mode SIP2 (IMI)','=',80)
 
-        sdir=root+'/e4d_dev/tutorial/mode_22/metal_box_sheet_line'
+        sdir=root+'/tutorial/mode_22/metal_box_sheet_line'
         wdir=root+'/Req_3.0_SIP2-IMI'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -3381,7 +3405,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Run Mode ERTtank1','=',80)
 
-        sdir=root+'/e4d_dev/tutorial/mode_31/tank'
+        sdir=root+'/tutorial/mode_31/tank'
         wdir=root+'/Req_2.0_ERTtank1'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -3434,7 +3458,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Run Mode ERTtank2','=',80)
 
-        sdir=root+'/e4d_dev/tutorial/mode_32/tank'
+        sdir=root+'/tutorial/mode_32/tank'
         wdir=root+'/Req_3.0_ERTtank2'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -3523,7 +3547,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Run Mode SIPtank1','=',80)
 
-        sdir=root+'/e4d_dev/tutorial/mode_41/tank'
+        sdir=root+'/tutorial/mode_41/tank'
         wdir=root+'/Req_2.0_SIPtank1'
         myrmtree(wdir)
         mycopytree(sdir,wdir)
@@ -3576,7 +3600,7 @@ def run_tutorials(modes):
         print('')
         print_splitter('Run Mode SIPtank2','=',80)
 
-        sdir=root+'/e4d_dev/tutorial/mode_42/tank'
+        sdir=root+'/tutorial/mode_42/tank'
         wdir=root+'/Req_3.0_SIPtank2'
         myremove(sdir+'/.#pots.txt')
         myrmtree(wdir)
