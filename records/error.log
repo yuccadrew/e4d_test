@@ -1,0 +1,774 @@
+READ_INP.F90:1534:35:
+
+ 1534 |          write(51,"(I6,A28,g17.5)"),indx,trim(tl_dfils(indx)),tlt(indx)
+      |                                   1
+Warning: Legacy Extension: Comma before i/o item list at (1)
+READ_INP.F90:2492:30:
+
+ 2492 |                    write(51,*)," A zone may not be linked with itself"
+      |                              1
+Warning: Legacy Extension: Comma before i/o item list at (1)
+JACOBIAN_FMM.F90:455:36:
+
+  455 |   if(my_rank_fmm .eq. 1) write(21,*),spot
+      |                                    1
+Warning: Legacy Extension: Comma before i/o item list at (1)
+JACOBIAN_FMM.F90:456:35:
+
+  456 |  if(my_rank_fmm .eq. 2) write(22,*),spot
+      |                                   1
+Warning: Legacy Extension: Comma before i/o item list at (1)
+JACOBIAN_FMM.F90:457:34:
+
+  457 | if(my_rank_fmm .eq. 3) write(23,*),spot
+      |                                  1
+Warning: Legacy Extension: Comma before i/o item list at (1)
+JACOBIAN_FMM.F90:458:34:
+
+  458 | if(my_rank_fmm .eq. 4) write(24,*),spot
+      |                                  1
+Warning: Legacy Extension: Comma before i/o item list at (1)
+JACOBIAN_FMM.F90:459:34:
+
+  459 | if(my_rank_fmm .eq. 5) write(25,*),spot
+      |                                  1
+Warning: Legacy Extension: Comma before i/o item list at (1)
+JACOBIAN_FMM.F90:460:34:
+
+  460 | if(my_rank_fmm .eq. 6) write(26,*),spot
+      |                                  1
+Warning: Legacy Extension: Comma before i/o item list at (1)
+JACOBIAN_FMM.F90:461:34:
+
+  461 | if(my_rank_fmm .eq. 7) write(27,*),spot
+      |                                  1
+Warning: Legacy Extension: Comma before i/o item list at (1)
+JACOBIAN_FMM.F90:426:18:
+
+  425 |     call MPI_SEND(nfailed,1,MPI_INTEGER,0,0,FMM_COMM, ierr)
+      |                  2
+  426 |     call MPI_SEND(failed(1:nfailed),nfailed,MPI_INTEGER,0,my_rank_fmm,FMM_COMM, ierr)
+      |                  1
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-1)
+JACOBIAN.F90:224:27:
+
+  211 |           call MPI_SEND(my_rank,1,MPI_INTEGER,0,1,E4D_COMM,ierr)
+      |                        2   
+......
+  224 |              call MPI_SEND(pa,nnodes,MPI_REAL,mown,a,E4D_COMM, ierr)
+      |                           1
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (REAL(4)/INTEGER(4)).
+IMI.F90:450:25:
+
+  450 |           call MPI_BCAST(ns,1,MPI_INTEGER,inc(i,2),SCOMM,ierr)
+      |                         1
+......
+  737 |           call MPI_BCAST(pole,nnodes,MPI_REAL,rnk,SCOMM,ierr)
+      |                         2
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (INTEGER(4)/REAL(4)).
+FORWARD.F90:569:36:
+
+  568 |     call MPI_ALLREDUCE(MPI_IN_PLACE,source_nodes,tne*4,MPI_INTEGER,MPI_SUM,SCOMM,ierr)
+      |                                    2
+  569 |     call MPI_ALLREDUCE(MPI_IN_PLACE,source_currents,tne*4,MPI_REAL,MPI_SUM,SCOMM,ierr)
+      |                                    1
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (REAL(4)/INTEGER(4)).
+DD_OPT_SLAVE.F90:836:19:
+
+  835 |     call MPI_BCAST(nodes, nnodes*3, MPI_REAL , 0, E4D_COMM, ierr )
+      |                   2
+  836 |     call MPI_BCAST(elements, nelem*4,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                   1
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (INTEGER(4)/REAL(4)).
+DD_OPT_SLAVE.F90:57:21:
+
+   56 |        call MPI_SEND(best_groups(i,:,:),dd_gsz*4,MPI_INTEGER,0,tag,E4D_COMM,ierr)
+      |                     2
+   57 |        call MPI_SEND(best_dr(:,i),dd_gsz,MPI_INTEGER,0,tag,E4D_COMM,ierr)
+      |                     1
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (REAL(4)/INTEGER(4)).
+DD_OPT_SLAVE.F90:38:19:
+
+   38 |     call MPI_BCAST(dd_alpha,1,MPI_REAL,0,E4D_COMM,ierr)
+      |                   1
+......
+  835 |     call MPI_BCAST(nodes, nnodes*3, MPI_REAL , 0, E4D_COMM, ierr )
+      |                   2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+DD_OPT_SLAVE.F90:39:19:
+
+   39 |     call MPI_BCAST(dd_beta,1,MPI_REAL,0,E4D_COMM,ierr)
+      |                   1
+......
+  835 |     call MPI_BCAST(nodes, nnodes*3, MPI_REAL , 0, E4D_COMM, ierr )
+      |                   2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+DD_OPT_SLAVE.F90:40:19:
+
+   40 |     call MPI_BCAST(dd_thresh,1,MPI_REAL,0,E4D_COMM,ierr)
+      |                   1
+......
+  835 |     call MPI_BCAST(nodes, nnodes*3, MPI_REAL , 0, E4D_COMM, ierr )
+      |                   2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE.F90:1096:22:
+
+ 1096 |        call MPI_BCAST(pcheck,4,MPI_LOGICAL,0,E4D_COMM,ierr)
+      |                      1
+......
+ 1123 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                      2
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (LOGICAL(4)/INTEGER(4)).
+SLAVE.F90:964:24:
+
+  964 |        call MPI_GATHERV(sol1,nj_rows,MPI_REAL,dummy,idummy,idummy,MPI_REAL,0,COMM,ierr)
+      |                        1
+......
+ 1034 |        call MPI_GATHERV(sol1i,nj_rows,MPI_DOUBLE_PRECISION,dummy,idummy,idummy,MPI_DOUBLE_PRECISION,0,E4D_COMM,ierr)
+      |                        2
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (REAL(4)/REAL(8)).
+SLAVE.F90:877:22:
+
+  877 |        call MPI_BCAST(col,1,MPI_REAL,0,COMM,ierr)
+      |                      1
+......
+ 1123 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                      2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE.F90:790:23:
+
+  790 |        call MPI_REDUCE(sol2,sol2,nelem,MPI_REAL,MPI_SUM,0,COMM,ierr)
+      |                       1
+......
+ 1001 |        call MPI_REDUCE(sol2i,sol2i,nelem,MPI_DOUBLE_PRECISION,MPI_SUM,0,E4D_COMM,ierr)
+      |                       2
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (REAL(4)/REAL(8)).
+SLAVE.F90:686:20:
+
+  686 |       call MPI_SEND(nmy_drows,1,MPI_INTEGER,0,0,COMM, ierr)
+      |                    1
+......
+ 1166 |        call MPI_SEND(Jaco,njaco*nelem,MPI_REAL,0,my_rank,E4D_COMM,ierr)
+      |                     2
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (INTEGER(4)/REAL(4)).
+SLAVE.F90:653:21:
+
+  653 |       call MPI_BCAST(nsig, 1, MPI_INTEGER, 0,E4D_COMM,ierr)
+      |                     1
+......
+ 1123 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                      2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE.F90:351:21:
+
+  351 |       call MPI_BCAST(nnodes, 1, MPI_INTEGER , 0, E4D_COMM, ierr )
+      |                     1
+......
+ 1123 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                      2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE.F90:358:21:
+
+  358 |       call MPI_BCAST(nelem, 1, MPI_INTEGER, 0,E4D_COMM,ierr)
+      |                     1
+......
+ 1123 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                      2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE.F90:362:21:
+
+  362 |       call MPI_BCAST(nfaces, 1, MPI_INTEGER, 0,E4D_COMM,ierr)
+      |                     1
+......
+ 1123 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                      2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE.F90:369:21:
+
+  369 |       call MPI_BCAST(itmp,1,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                     1
+......
+ 1123 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                      2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE.F90:329:21:
+
+  329 |       call MPI_BCAST(nec, 1, MPI_INTEGER, 0,E4D_COMM,ierr)
+      |                     1
+......
+ 1123 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                      2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE.F90:318:21:
+
+  318 |       call MPI_BCAST(nm, 1, MPI_INTEGER, 0,E4D_COMM,ierr)
+      |                     1
+......
+ 1123 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                      2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE.F90:300:21:
+
+  300 |       call MPI_BCAST(tne, 1, MPI_INTEGER , 0, E4D_COMM, ierr )
+      |                     1
+......
+ 1123 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                      2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE.F90:32:21:
+
+   32 |       call MPI_BCAST(command,1,MPI_INTEGER,0,COMM,ierr)
+      |                     1
+......
+ 1123 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                      2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE.F90:105:22:
+
+  105 |         call MPI_SEND(my_frt,1,MPI_REAL,0,0,E4D_COMM,ierr)
+      |                      1
+......
+ 1166 |        call MPI_SEND(Jaco,njaco*nelem,MPI_REAL,0,my_rank,E4D_COMM,ierr)
+      |                     2 
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE.F90:109:22:
+
+  109 |         call MPI_SEND(my_abt,1,MPI_REAL,0,0,E4D_COMM,ierr)
+      |                      1
+......
+ 1166 |        call MPI_SEND(Jaco,njaco*nelem,MPI_REAL,0,my_rank,E4D_COMM,ierr)
+      |                     2 
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE.F90:113:22:
+
+  113 |         call MPI_SEND(my_kspt,1,MPI_REAL,0,0,E4D_COMM,ierr)
+      |                      1
+......
+ 1166 |        call MPI_SEND(Jaco,njaco*nelem,MPI_REAL,0,my_rank,E4D_COMM,ierr)
+      |                     2 
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE.F90:117:22:
+
+  117 |         call MPI_SEND(my_jbt,1,MPI_REAL,0,0,E4D_COMM,ierr)
+      |                      1
+......
+ 1166 |        call MPI_SEND(Jaco,njaco*nelem,MPI_REAL,0,my_rank,E4D_COMM,ierr)
+      |                     2 
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE_FMM.F90:313:20:
+
+  313 |       call MPI_SEND(nmy_drows,1,MPI_INTEGER,0,0,FMM_COMM, ierr)
+      |                    1
+......
+  330 |           call MPI_SEND(ttimes(:,es),nnodes,MPI_REAL,0,0,FMM_COMM,ierr)
+      |                        2
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (INTEGER(4)/REAL(4)).
+SLAVE_FMM.F90:300:21:
+
+  300 |       call MPI_BCAST(nspd, 1, MPI_INTEGER, 0,FMM_COMM,ierr)
+      |                     1
+......
+  326 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,FMM_COMM,ierr)
+      |                      2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE_FMM.F90:302:21:
+
+  302 |       call MPI_BCAST(speed, nspd,MPI_REAL,0,FMM_COMM,ierr)
+      |                     1
+......
+  326 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,FMM_COMM,ierr)
+      |                      2
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (REAL(4)/INTEGER(4)).
+SLAVE_FMM.F90:233:21:
+
+  233 |       call MPI_BCAST(nnodes, 1, MPI_INTEGER , 0, FMM_COMM, ierr )
+      |                     1
+......
+  326 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,FMM_COMM,ierr)
+      |                      2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE_FMM.F90:240:21:
+
+  240 |       call MPI_BCAST(nelem, 1, MPI_INTEGER, 0,FMM_COMM,ierr)
+      |                     1
+......
+  326 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,FMM_COMM,ierr)
+      |                      2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE_FMM.F90:211:21:
+
+  211 |       call MPI_BCAST(nm_fmm, 1, MPI_INTEGER, 0,FMM_COMM,ierr)
+      |                     1
+......
+  326 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,FMM_COMM,ierr)
+      |                      2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE_FMM.F90:183:21:
+
+  183 |       call MPI_BCAST(tns,1,MPI_INTEGER , 0, FMM_COMM, ierr )
+      |                     1
+......
+  326 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,FMM_COMM,ierr)
+      |                      2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE_FMM.F90:188:24:
+
+  188 |          call MPI_BCAST(nrc,1,MPI_INTEGER , 0, FMM_COMM, ierr )
+      |                        1
+......
+  326 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,FMM_COMM,ierr)
+      |                      2  
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE_FMM.F90:20:21:
+
+   20 |       call MPI_BCAST(command,1,MPI_INTEGER,0,FMM_COMM,ierr)
+      |                     1
+......
+  326 |        call MPI_BCAST(spack,2,MPI_INTEGER,0,FMM_COMM,ierr)
+      |                      2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE_FMM.F90:102:22:
+
+  102 |         call MPI_SEND(my_frt,1,MPI_REAL,0,0,FMM_COMM,ierr)
+      |                      1
+......
+  330 |           call MPI_SEND(ttimes(:,es),nnodes,MPI_REAL,0,0,FMM_COMM,ierr)
+      |                        2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE_FMM.F90:106:22:
+
+  106 |         call MPI_SEND(my_abt,1,MPI_REAL,0,0,FMM_COMM,ierr)
+      |                      1
+......
+  330 |           call MPI_SEND(ttimes(:,es),nnodes,MPI_REAL,0,0,FMM_COMM,ierr)
+      |                        2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE_FMM.F90:110:22:
+
+  110 |         call MPI_SEND(my_kspt,1,MPI_REAL,0,0,FMM_COMM,ierr)
+      |                      1
+......
+  330 |           call MPI_SEND(ttimes(:,es),nnodes,MPI_REAL,0,0,FMM_COMM,ierr)
+      |                        2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+SLAVE_FMM.F90:114:22:
+
+  114 |         call MPI_SEND(my_jbt,1,MPI_REAL,0,0,FMM_COMM,ierr)
+      |                      1
+......
+  330 |           call MPI_SEND(ttimes(:,es),nnodes,MPI_REAL,0,0,FMM_COMM,ierr)
+      |                        2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+Output.f90:411:25:
+
+  411 |           call MPI_BCAST(spack,2,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                         1
+......
+  583 |     call MPI_BCAST(com,1,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                   2      
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-1)
+Output.f90:419:25:
+
+  419 |           call MPI_BCAST(spack,2,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                         1
+......
+  583 |     call MPI_BCAST(com,1,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                   2      
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-1)
+Output.f90:435:28:
+
+  435 |              call MPI_BCAST(spack,2,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                            1
+......
+  583 |     call MPI_BCAST(com,1,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                   2         
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-1)
+Output.f90:443:28:
+
+  443 |              call MPI_BCAST(spack,2,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                            1
+......
+  583 |     call MPI_BCAST(com,1,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                   2         
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-1)
+Output_FMM.f90:165:25:
+
+  165 |           call MPI_BCAST(spack,2,MPI_INTEGER,0,FMM_COMM,ierr)
+      |                         1
+......
+  235 |     call MPI_BCAST(com,1,MPI_INTEGER,0,FMM_COMM,ierr)
+      |                   2      
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-1)
+MASTER.F90:1934:20:
+
+ 1933 |      call MPI_BCAST(nodes, nnodes*3, MPI_REAL , 0, E4D_COMM, ierr )
+      |                    2
+ 1934 |      call MPI_BCAST(elements, nelem*4,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                    1
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (INTEGER(4)/REAL(4)).
+MASTER.F90:1862:22:
+
+ 1862 |         call MPI_SEND(cgmin_flag,10,MPI_LOGICAL,0,tag,MPI_COMM_WORLD,ierr)
+      |                      1
+......
+ 1905 |            call MPI_SEND(speed,nelem,MPI_REAL,0,tag,MPI_COMM_WORLD,ierr)
+      |                         2
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (LOGICAL(4)/REAL(4)).
+MASTER.F90:1863:22:
+
+ 1863 |         call MPI_RECV(tflags,10,MPI_LOGICAL,0,tag,MPI_COMM_WORLD,status,ierr)
+      |                      1
+......
+ 1899 |            call MPI_RECV(sigma,nelem,MPI_REAL,0,tag,MPI_COMM_WORLD,status,ierr)
+      |                         2
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (LOGICAL(4)/REAL(4)).
+MASTER.F90:1014:21:
+
+ 1014 |     call MPI_GATHERV(dummy,0,MPI_REAL,mv1,recvcounts,displs,MPI_REAL,0,COMM,ierr2)
+      |                     1
+......
+ 1091 |     call MPI_GATHERV(dummy,0,MPI_DOUBLE_PRECISION,mv1,recvcounts,displs,MPI_DOUBLE_PRECISION,0,E4D_COMM,ierr2)
+      |                     2
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (REAL(4)/REAL(8)).
+MASTER.F90:856:33:
+
+  856 |     call MPI_REDUCE(MPI_IN_PLACE,mv2,n,MPI_REAL,MPI_SUM,0,COMM,ierr2)
+      |                                 1
+......
+ 1048 |     call MPI_REDUCE(MPI_IN_PLACE,mv2,n,MPI_DOUBLE_PRECISION,MPI_SUM,0,E4D_COMM,ierr2)
+      |                                 2
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (REAL(4)/REAL(8)).
+MASTER_FMM.F90:719:24:
+
+  718 |           call MPI_RECV(n,1,MPI_INTEGER,i,0,FMM_COMM,status,ierr)
+      |                        2
+  719 |           call MPI_RECV(tmp(1:n),n,MPI_INTEGER,i,i,FMM_COMM,status,ierr)
+      |                        1
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-1)
+MASTER_FMM.F90:651:21:
+
+  651 |        call MPI_RECV(ibuff(1:nbuff),nbuff,MPI_INTEGER,i,0,FMM_COMM,status,ierr)
+      |                     1
+......
+  718 |           call MPI_RECV(n,1,MPI_INTEGER,i,0,FMM_COMM,status,ierr)
+      |                        2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-1)
+MASTER_FMM.F90:652:21:
+
+  652 |        call MPI_RECV(rbuff(1:nbuff),nbuff,MPI_REAL,i,0,FMM_COMM,status,ierr)
+      |                     1
+......
+  718 |           call MPI_RECV(n,1,MPI_INTEGER,i,0,FMM_COMM,status,ierr)
+      |                        2
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (REAL(4)/INTEGER(4)).
+MASTER_FMM.F90:623:19:
+
+  622 |     call MPI_BCAST(nspd, 1, MPI_INTEGER, 0,FMM_COMM,ierr)
+      |                   2
+  623 |     call MPI_BCAST(speed, nspd,MPI_REAL,0,FMM_COMM,ierr)
+      |                   1
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (REAL(4)/INTEGER(4)).
+MASTER_FMM.F90:191:19:
+
+  191 |     call MPI_BCAST(nbounds, nnodes, MPI_INTEGER , 0, FMM_COMM, ierr )
+      |                   1
+......
+  622 |     call MPI_BCAST(nspd, 1, MPI_INTEGER, 0,FMM_COMM,ierr)
+      |                   2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-1)
+MASTER_FMM.F90:193:19:
+
+  193 |     call MPI_BCAST(elements, nelem*4,MPI_INTEGER,0,FMM_COMM,ierr)
+      |                   1
+......
+  622 |     call MPI_BCAST(nspd, 1, MPI_INTEGER, 0,FMM_COMM,ierr)
+      |                   2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-2)
+MASTER_FMM.F90:195:19:
+
+  195 |     call MPI_BCAST(nbrs, nelem*4,MPI_INTEGER,0,FMM_COMM,ierr)
+      |                   1
+......
+  622 |     call MPI_BCAST(nspd, 1, MPI_INTEGER, 0,FMM_COMM,ierr)
+      |                   2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-2)
+MASTER_FMM.F90:196:19:
+
+  196 |     call MPI_BCAST(zones, nelem,MPI_INTEGER,0,FMM_COMM,ierr)
+      |                   1
+......
+  622 |     call MPI_BCAST(nspd, 1, MPI_INTEGER, 0,FMM_COMM,ierr)
+      |                   2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-1)
+MASTER_FMM.F90:146:19:
+
+  146 |     call MPI_BCAST(jind,2*(n_rank_fmm-1),MPI_INTEGER , 0, FMM_COMM, ierr )
+      |                   1
+......
+  622 |     call MPI_BCAST(nspd, 1, MPI_INTEGER, 0,FMM_COMM,ierr)
+      |                   2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-2)
+MASTER_FMM.F90:147:19:
+
+  147 |     call MPI_BCAST(sind,2*(n_rank_fmm-1),MPI_INTEGER , 0, FMM_COMM, ierr )
+      |                   1
+......
+  622 |     call MPI_BCAST(nspd, 1, MPI_INTEGER, 0,FMM_COMM,ierr)
+      |                   2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-2)
+MASTER_FMM.F90:18:19:
+
+   18 |     call MPI_BCAST(s_conf_fmm, 2*nm_fmm,MPI_INTEGER,0,FMM_COMM,ierr)
+      |                   1
+......
+  622 |     call MPI_BCAST(nspd, 1, MPI_INTEGER, 0,FMM_COMM,ierr)
+      |                   2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-2)
+DD_OPT.F90:468:19:
+
+  468 |     call MPI_BCAST(dd_alph,1,MPI_REAL,0,E4D_COMM,ierr)
+      |                   1
+......
+  795 |           call MPI_BCAST(tpol,tne,MPI_REAL,0,E4D_COMM,ierr)
+      |                         2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+DD_OPT.F90:469:19:
+
+  469 |     call MPI_BCAST(dd_bet,1,MPI_REAL,0,E4D_COMM,ierr)
+      |                   1
+......
+  795 |           call MPI_BCAST(tpol,tne,MPI_REAL,0,E4D_COMM,ierr)
+      |                         2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+DD_OPT.F90:470:19:
+
+  470 |     call MPI_BCAST(dd_thrsh,1,MPI_REAL,0,E4D_COMM,ierr)
+      |                   1
+......
+  795 |           call MPI_BCAST(tpol,tne,MPI_REAL,0,E4D_COMM,ierr)
+      |                         2
+Warning: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+DD_OPT.F90:471:19:
+
+  471 |     call MPI_BCAST(dd_gsize,1,MPI_INTEGER,0,E4D_COMM,ierr)
+      |                   1
+......
+  795 |           call MPI_BCAST(tpol,tne,MPI_REAL,0,E4D_COMM,ierr)
+      |                         2
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (INTEGER(4)/REAL(4)).
+DD_OPT.F90:371:24:
+
+  370 |           call MPI_RECV(test_grp,dd_gsize*4, MPI_INTEGER,r,tag, E4D_COMM, status, ierr)
+      |                        2
+  371 |           call MPI_RECV(test_dr,dd_gsize, MPI_REAL,r,tag,E4D_COMM, status, ierr)
+      |                        1
+Warning: Type mismatch between actual argument at (1) and actual argument at (2) (REAL(4)/INTEGER(4)).
+rm: cannot remove '*.o': No such file or directory
+rm: cannot remove 'triangle': No such file or directory
+./showme.c:104:10: fatal error: X11/Xlib.h: No such file or directory
+  104 | #include <X11/Xlib.h>
+      |          ^~~~~~~~~~~~
+compilation terminated.
+make: *** [makefile:113: showme] Error 1
+./configure: line 5893: systeminfo: command not found
+configure: WARNING: curl required for dap access. DAP support disabled.
+configure: WARNING: No S3 library available; disabling S3 support
+configure: WARNING: Doxygen not found - documentation will not be built
+configure: WARNING: dot not found - will use simple charts in documentation
+configure: WARNING: netcdf-4 not enabled; disabling DAP4
+libtool: warning: ignoring multiple '-rpath's for a libtool library
+libtool: warning: ignoring multiple '-rpath's for a libtool library
+libtool: warning: remember to run 'libtool --finish /usr/local/lib'
+ex_close.c: In function ‘ex_close’:
+ex_close.c:80:8: warning: unused variable ‘parent_id’ [-Wunused-variable]
+   80 |    int parent_id = 0;
+      |        ^~~~~~~~~
+ex_copy.c: In function ‘ex_copy’:
+ex_copy.c:192:31: warning: ‘%s’ directive writing up to 255 bytes into a region of size 232 [-Wformat-overflow=]
+  192 |      "Error: failed to define %s dimension in file id %d",
+      |                               ^~
+  193 |      dim_nm, out_exoid);
+      |      ~~~~~~                    
+In file included from /usr/include/stdio.h:866,
+                 from ../../cbind/include/exodusII_int.h:69,
+                 from ex_copy.c:42:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 48 and 313 bytes into a destination of size 256
+   38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   39 |       __bos (__s), __fmt, __va_arg_pack ());
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ex_create_group.c: In function ‘ex_create_group’:
+ex_create_group.c:44:7: warning: unused variable ‘status’ [-Wunused-variable]
+   44 |   int status;
+      |       ^~~~~~
+ex_get_group_id.c: In function ‘ex_get_group_id’:
+ex_get_group_id.c:52:7: warning: unused variable ‘status’ [-Wunused-variable]
+   52 |   int status;
+      |       ^~~~~~
+ex_get_group_ids.c: In function ‘ex_get_group_ids’:
+ex_get_group_ids.c:48:7: warning: unused variable ‘status’ [-Wunused-variable]
+   48 |   int status;
+      |       ^~~~~~
+ex_inquire.c: In function ‘ex_inquire_internal’:
+ex_inquire.c:369:21: warning: unused variable ‘tmp_num’ [-Wunused-variable]
+  369 |   int dimid, varid, tmp_num, rootid;
+      |                     ^~~~~~~
+ex_utils.c: In function ‘ex_put_names_internal’:
+ex_utils.c:187:18: warning: comparison between pointer and zero character constant [-Wpointer-compare]
+  187 |     if (names[i] != '\0') {
+      |                  ^~
+ex_utils.c:187:9: note: did you mean to dereference the pointer?
+  187 |     if (names[i] != '\0') {
+      |         ^
+ex_utils.c: In function ‘ex_put_name_internal’:
+ex_utils.c:240:12: warning: comparison between pointer and zero character constant [-Wpointer-compare]
+  240 |   if (name != '\0') {
+      |            ^~
+ex_utils.c:240:7: note: did you mean to dereference the pointer?
+  240 |   if (name != '\0') {
+      |       ^
+rm: cannot remove '*.o': No such file or directory
+rm: cannot remove 'bx': No such file or directory
+f951: Warning: Nonexistent include directory ‘/home/zhuy359/projects/e4d_test/e4d_dev/third_party/exodus/exodus/include’ [-Wmissing-include-dirs]
+1122 INFO: PyInstaller: 5.3
+1122 INFO: Python: 3.8.8 (conda)
+1152 INFO: Platform: Linux-5.8.0-45-generic-x86_64-with-glibc2.10
+1152 INFO: wrote /home/zhuy359/projects/e4d_test/e4d_dev/utilities/python/px/px.spec
+1155 INFO: UPX is not available.
+1156 INFO: Extending PYTHONPATH with paths
+['/home/zhuy359/projects/e4d_test/e4d_dev/utilities/python/px']
+1521 INFO: checking Analysis
+1521 INFO: Building Analysis because Analysis-00.toc is non existent
+1521 INFO: Initializing module dependency graph...
+1525 INFO: Caching module graph hooks...
+1539 INFO: Analyzing base_library.zip ...
+8656 INFO: Processing pre-find module path hook distutils from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks/pre_find_module_path/hook-distutils.py'.
+8656 INFO: distutils: retargeting to non-venv dir '/home/zhuy359/anaconda3/lib/python3.8'
+11640 INFO: Caching module dependency graph...
+11778 INFO: running Analysis Analysis-00.toc
+11787 INFO: Analyzing /home/zhuy359/projects/e4d_test/e4d_dev/utilities/python/px/px.py
+16431 INFO: Processing pre-find module path hook site from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks/pre_find_module_path/hook-site.py'.
+16431 INFO: site: retargeting to fake-dir '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/fake-modules'
+20655 INFO: Processing pre-safe import module hook six.moves from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks/pre_safe_import_module/hook-six.moves.py'.
+24148 INFO: Processing pre-safe import module hook urllib3.packages.six.moves from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks/pre_safe_import_module/hook-urllib3.packages.six.moves.py'.
+35470 INFO: Processing pre-safe import module hook win32com from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/pre_safe_import_module/hook-win32com.py'.
+40154 INFO: Processing pre-safe import module hook gi from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks/pre_safe_import_module/hook-gi.py'.
+41128 INFO: Processing module hooks...
+41128 INFO: Loading module hook 'hook-nbformat.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+41143 INFO: Loading module hook 'hook-pytest.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+41933 INFO: Loading module hook 'hook-notebook.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+44445 INFO: Loading module hook 'hook-certifi.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+44446 INFO: Loading module hook 'hook-IPython.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+45164 INFO: Loading module hook 'hook-docutils.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+52714 INFO: Loading module hook 'hook-regex.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+52715 INFO: Loading module hook 'hook-parso.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+52721 INFO: Loading module hook 'hook-jinja2.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+52737 INFO: Loading module hook 'hook-cryptography.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+55774 INFO: Loading module hook 'hook-appdirs.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+55796 INFO: Loading module hook 'hook-zmq.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+58745 INFO: Loading module hook 'hook-pycparser.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+58746 INFO: Loading module hook 'hook-jedi.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+59042 INFO: Loading module hook 'hook-jsonschema.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+59048 INFO: Loading module hook 'hook-h5py.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+59048 INFO: Loading module hook 'hook-py.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+60563 INFO: Loading module hook 'hook-nbconvert.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+60608 INFO: Loading module hook 'hook-scipy.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+60609 INFO: Loading module hook 'hook-babel.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+60703 INFO: Loading module hook 'hook-wcwidth.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+60704 INFO: Loading module hook 'hook-setuptools.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+62859 INFO: Loading module hook 'hook-difflib.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+62864 INFO: Loading module hook 'hook-distutils.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+62871 INFO: Loading module hook 'hook-sqlite3.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+64349 INFO: Loading module hook 'hook-zope.interface.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+64359 INFO: Loading module hook 'hook-pkg_resources.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+67895 INFO: Loading module hook 'hook-matplotlib.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+68099 INFO: Loading module hook 'hook-gevent.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+69761 INFO: Determining a mapping of distributions to packages...
+117817 WARNING: Unable to find package for requirement zope.event from package gevent.
+117817 WARNING: Unable to find package for requirement zope.interface from package gevent.
+117817 INFO: Packages required by gevent:
+['setuptools', 'greenlet']
+118886 INFO: Loading module hook 'hook-importlib_metadata.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+118887 INFO: Loading module hook 'hook-sphinx.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+133916 INFO: Loading module hook 'hook-_tkinter.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+133992 INFO: checking Tree
+133992 INFO: Building Tree because Tree-00.toc is non existent
+133992 INFO: Building Tree Tree-00.toc
+133999 INFO: checking Tree
+133999 INFO: Building Tree because Tree-01.toc is non existent
+133999 INFO: Building Tree Tree-01.toc
+134040 INFO: checking Tree
+134040 INFO: Building Tree because Tree-02.toc is non existent
+134040 INFO: Building Tree Tree-02.toc
+134042 INFO: Loading module hook 'hook-multiprocessing.util.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+134052 INFO: Loading module hook 'hook-PyQt5.QtCore.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+134335 INFO: Loading module hook 'hook-sysconfig.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+134348 INFO: Loading module hook 'hook-PyQt5.QtSvg.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+134525 INFO: Loading module hook 'hook-matplotlib.backends.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+134526 INFO: Matplotlib backend selection method: automatic discovery of used backends
+134736 INFO: Trying determine the default backend as first importable candidate from the list: ['Qt5Agg', 'Gtk3Agg', 'TkAgg', 'WxAgg']
+135049 INFO: Selected matplotlib backends: ['Qt5Agg']
+135162 INFO: Loading module hook 'hook-PIL.Image.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+137129 INFO: Loading module hook 'hook-pickle.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+137138 INFO: Loading module hook 'hook-platform.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+137143 INFO: Loading module hook 'hook-PIL.ImageFilter.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+137149 INFO: Loading module hook 'hook-lib2to3.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+137164 INFO: Loading module hook 'hook-numpy._pytesttester.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+137169 INFO: Loading module hook 'hook-packaging.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+137169 INFO: Loading module hook 'hook-pytz.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+137220 INFO: Loading module hook 'hook-pygments.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+144145 INFO: Loading module hook 'hook-PIL.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+144172 INFO: Loading module hook 'hook-PyQt5.QtWidgets.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+144286 INFO: Loading module hook 'hook-distutils.util.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+144297 INFO: Loading module hook 'hook-xml.dom.domreg.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+144298 INFO: Loading module hook 'hook-xml.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+144298 INFO: Loading module hook 'hook-setuptools.msvc.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+144304 INFO: Loading module hook 'hook-PyQt5.QtGui.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+144385 INFO: Loading module hook 'hook-encodings.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+145852 INFO: Loading module hook 'hook-numpy.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+145962 INFO: Import to be excluded not found: 'f2py'
+145974 INFO: Loading module hook 'hook-PyQt5.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+145977 INFO: Loading module hook 'hook-heapq.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+145983 INFO: Loading module hook 'hook-xml.etree.cElementTree.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+145986 INFO: Loading module hook 'hook-lxml.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+148828 INFO: Loading module hook 'hook-lxml.objectify.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+148829 INFO: Loading module hook 'hook-lxml.etree.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+148829 INFO: Loading module hook 'hook-PIL.SpiderImagePlugin.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks'...
+148836 INFO: Loading module hook 'hook-lxml.isoschematron.py' from '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/stdhooks'...
+148938 INFO: Looking for ctypes DLLs
+149110 WARNING: Library user32 required via ctypes not found
+149362 INFO: Analyzing run-time hooks ...
+149387 INFO: Including run-time hook '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks/rthooks/pyi_rth_subprocess.py'
+149389 INFO: Including run-time hook '/home/zhuy359/anaconda3/lib/python3.8/site-packages/_pyinstaller_hooks_contrib/hooks/rthooks/pyi_rth_traitlets.py'
+149389 INFO: Including run-time hook '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks/rthooks/pyi_rth_inspect.py'
+149391 INFO: Including run-time hook '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks/rthooks/pyi_rth_pkgres.py'
+149396 INFO: Including run-time hook '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks/rthooks/pyi_rth_pkgutil.py'
+149398 INFO: Including run-time hook '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks/rthooks/pyi_rth_multiprocessing.py'
+149400 INFO: Including run-time hook '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks/rthooks/pyi_rth__tkinter.py'
+149401 INFO: Including run-time hook '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks/rthooks/pyi_rth_pyqt5.py'
+149402 INFO: Including run-time hook '/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/hooks/rthooks/pyi_rth_mplconfig.py'
+149449 INFO: Looking for dynamic libraries
+/home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/isolated/_child.py:94: VisibleDeprecationWarning: zmq.eventloop.minitornado is deprecated in pyzmq 14.0 and will be removed.
+    Install tornado itself to use zmq with the tornado IOLoop.
+    
+  while run_next_command(read_fh, write_fh):
+153339 INFO: Looking for eggs
+153340 INFO: Python library not in binary dependencies. Doing additional searching...
+153368 INFO: Using Python library /home/zhuy359/anaconda3/lib/libpython3.8.so.1.0
+153425 INFO: Warnings written to /home/zhuy359/projects/e4d_test/e4d_dev/utilities/python/px/build/px/warn-px.txt
+153679 INFO: Graph cross-reference written to /home/zhuy359/projects/e4d_test/e4d_dev/utilities/python/px/build/px/xref-px.html
+153957 INFO: checking PYZ
+153957 INFO: Building PYZ because PYZ-00.toc is non existent
+153957 INFO: Building PYZ (ZlibArchive) /home/zhuy359/projects/e4d_test/e4d_dev/utilities/python/px/build/px/PYZ-00.pyz
+156744 INFO: Building PYZ (ZlibArchive) /home/zhuy359/projects/e4d_test/e4d_dev/utilities/python/px/build/px/PYZ-00.pyz completed successfully.
+156810 INFO: checking PKG
+156810 INFO: Building PKG because PKG-00.toc is non existent
+156810 INFO: Building PKG (CArchive) px.pkg
+474666 INFO: Building PKG (CArchive) px.pkg completed successfully.
+474873 INFO: Bootloader /home/zhuy359/anaconda3/lib/python3.8/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+474873 INFO: checking EXE
+474873 INFO: Building EXE because EXE-00.toc is non existent
+474873 INFO: Building EXE from EXE-00.toc
+474873 INFO: Copying bootloader EXE to /home/zhuy359/projects/e4d_test/e4d_dev/utilities/python/px/dist/px
+474873 INFO: Appending PKG archive to custom ELF section in EXE
+476013 INFO: Building EXE from EXE-00.toc completed successfully.

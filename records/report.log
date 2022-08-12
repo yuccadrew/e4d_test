@@ -1,0 +1,72 @@
+
+This will install all of its files and subdirectories directly in
+/home/zhuy359/projects/e4d_test
+Entering /home/zhuy359/projects/e4d_test
+git clone -b master https://github.com/pnnl/E4D.git e4d_dev
+
+================================ Install E4D =================================
+
+Entering /home/zhuy359/projects/e4d_test/e4d_dev/src
+make -f Makefile.imi
+Copying e4d to /home/zhuy359/projects/e4d_test/e4d_dev/bin
+E4D has been successfully installed in /home/zhuy359/projects/e4d_test/e4d_dev/bin
+
+=============================== Install Tetgen ===============================
+
+
+Entering /home/zhuy359/projects/e4d_test/e4d_dev/third_party/tetgen1.5.0
+make
+Copying tetgen to /home/zhuy359/projects/e4d_test/e4d_dev/bin
+Tetgen has been successfully installed in /home/zhuy359/projects/e4d_test/e4d_dev/bin
+
+============================== Install Triangle ==============================
+
+
+Entering /home/zhuy359/projects/e4d_test/e4d_dev/third_party/triangle
+unzip triangle.zip -d triangle
+Entering /home/zhuy359/projects/e4d_test/e4d_dev/third_party/triangle/triangle
+make
+Copying triangle to /home/zhuy359/projects/e4d_test/e4d_dev/bin
+Triangle has been successfully installed in /home/zhuy359/projects/e4d_test/e4d_dev/bin
+
+================================= Install Bx =================================
+
+Entering directory /home/zhuy359/projects/e4d_test/e4d_dev/third_party
+wget https://downloads.unidata.ucar.edu/netcdf-c/4.9.0/netcdf-c-4.9.0.tar.gz
+tar -xvzf netcdf-c-4.9.0.tar.gz
+
+Entering /home/zhuy359/projects/e4d_test/e4d_dev/third_party/netcdf-c-4.9.0
+./configure --disable-netcdf-4 --disable-dap
+make
+
+Entering /home/zhuy359/projects/e4d_test/e4d_dev/third_party/netcdf-c-4.9.0/liblib
+/bin/sh ../libtool --mode=install /usr/bin/install -c libnetcdf.la "/home/zhuy359/projects/e4d_test/e4d_dev/lib"
+/bin/sh ../libtool --finish "/home/zhuy359/projects/e4d_test/e4d_dev/lib"
+
+Entering directory /home/zhuy359/projects/e4d_test/e4d_dev/third_party
+git clone https://github.com/certik/exodus.git
+
+Entering /home/zhuy359/projects/e4d_test/e4d_dev/third_party/exodus/exodus
+make -f Makefile.standalone
+
+Entering /home/zhuy359/projects/e4d_test/e4d_dev/utilities/bx
+make
+Copying bx to /home/zhuy359/projects/e4d_test/e4d_dev/bin
+Bx has been successfully installed in /home/zhuy359/projects/e4d_test/e4d_dev/bin
+
+================================= Install Px =================================
+
+Entering /home/zhuy359/projects/e4d_test/e4d_dev/utilities/python/px
+pyinstaller -D -F -n px -c "px.py"
+Copying px to /home/zhuy359/projects/e4d_test/e4d_dev/bin
+Px has been successfully installed in /home/zhuy359/projects/e4d_test/e4d_dev/bin
+
+==============================================================================
+
+If you want to add e4d to your path for the current session then type
+source "/home/zhuy359/projects/e4d_test/e4d_dev/set_env.sh"
+
+If you want to add e4d to your path permanently then type
+echo "export PATH=/home/zhuy359/projects/e4d_test/e4d_dev/bin:\$PATH" >> ~/.bashrc
+echo "export LD_LIBRARY_PATH=/home/zhuy359/projects/e4d_test/e4d_dev/lib" >> ~/.bashrc
+

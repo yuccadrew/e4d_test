@@ -1,0 +1,1465 @@
+
+=========================== Validate TetGen Version ============================
+
+Requirement_0.1.0: Check mesh quality using installed tetgen version
+Success: TetGen version test passed
+
+====================== Test file setup for run Mode ERT1 =======================
+
+[Running mode 1] mpirun -np 1 e4d
+[Running mode ERT1] mpirun -np 1 e4d
+E4D files set up.
+
+Requirement 0.2.1: Check if the old and new mode keywords match
+Success: E4D passed test
+
+=================== Test file setup for Run Mode ERTAnalytic ===================
+[Running mode 'analytic'] mpirun -np 7 e4d
+[Running mode ERTAnalytic] mpirun -np 7 e4d
+E4D files set up.
+
+Requirement 0.2.2: Check if the old and new mode keywords match
+Success: E4D passed test
+
+====================== Test file setup for Run Mode ERT2 =======================
+[Running mode 2] mpirun -np 7 e4d
+[Running mode ERT2] mpirun -np 7 e4d
+E4D files set up.
+
+Requirement 0.2.3: Check if the old and new mode keywords match
+Success: E4D passed test
+
+===================== Testing file setup for Run Mode ERT3 =====================
+[Running mode 3] mpirun -np 7 e4d
+[Running mode ERT3] mpirun -np 7 e4d
+E4D files set up.
+
+Requirement 0.2.4: Check if the old and new mode keywords match
+Success: E4D passed test
+
+================================ Run Mode ERT4 =================================
+[Running mode 4] mpirun -np 7 e4d
+
+[Running mode ERT4] mpirun -np 7 e4d
+E4D files set up.
+
+Requirement 4.0_ERT4: Check if the old and new mode keywords match
+Success: E4D passed test
+
+Requirement 0.2.5: Check if the old and new mode keywords match
+Success: E4D passed test
+
+===================== Set up files for Run Mode ERT1 (IMI) =====================
+[Running mode 1 (IMI)] mpirun -np 1 e4d
+[Running mode ERT1 (IMI)] mpirun -np 1 e4d
+E4D files set up.
+
+Requirement 0.2.6: Check if the old and new mode keywords match
+Success: E4D passed test
+
+=================== Test file setup for Run Mode ERT2 (IMI) ====================
+[Running mode 2 (IMI)] mpirun -np 7 e4d
+[Running mode ERT2 (IMI)] mpirun -np 7 e4d
+E4D files set up.
+
+Requirement 0.2.7: Check if the old and new mode keywords match
+Success: E4D passed test
+
+=================== Test file set up for Run Mode ERT3 (IMI) ===================
+[Running mode 3 (IMI)] mpirun -np 7 e4d
+[Running mode ERT3 (IMI)] mpirun -np 7 e4d
+E4D files set up.
+
+Requirement 0.2.8: Check if the old and new mode keywords match
+Success: E4D passed test
+
+===================== Testing file setup for Run Mode SIP1 =====================
+[Running mode 21] mpirun -np 1 e4d
+[Running mode SIP1] mpirun -np 1 e4d
+E4D files set up.
+
+Requirement 0.2.9: Check if the old and new mode keywords match
+Success: E4D passed test
+
+===================== Testing file setup for Run Mode SIP2 =====================
+[Running mode 22] mpirun -np 7 e4d
+[Running mode SIP2] mpirun -np 7 e4d
+E4D files set up.
+
+Requirement 0.2.10: Check if the old and new mode keywords match
+Success: E4D passed test
+
+================================ Run Mode SIP3 =================================
+
+Requirement 0.2.11: Tutorial for mode SIP3 is currently unavailable. Skipping
+
+============================= Run Mode SIP1 (IMI) ==============================
+
+Requirement 0.2.12: Tutorial for mode SIP1 (IMI) is currently unavailable. Skipping
+
+============================= Run Mode SIP2 (IMI) ==============================
+
+cd /home/zhuy359/projects/e4d_test/Req_3.0_SIP2-IMI
+
+[Running mode 22 (IMI)] mpirun -np 7 e4d
+
+[Running mode SIP2 (IMI)] mpirun -np 7 e4d
+E4D files set up.
+
+Requirement 0.2.13: Check if the old and new mode keywords match
+Success: E4D passed test
+
+============================= Run Mode SIP3 (IMI) ==============================
+
+Requirement 0.2.14: Tutorial for mode SIP3 (IMI) is currently unavailable. Skipping
+
+============================== Run Mode ERTtank1 ===============================
+[Running mode 31] mpirun -np 1 e4d
+[Running mode ERTtank1] mpirun -np 1 e4d
+E4D files set up.
+
+Requirement 0.2.15: Check if the old and new mode keywords match
+Success: E4D passed test
+
+============================== Run Mode ERTtank2 ===============================
+[Running mode 32] mpirun -np 7 e4d
+[Running mode ERTtank2] mpirun -np 7 e4d
+E4D files set up.
+
+Requirement 0.2.16: Check if the old and new mode keywords match
+Success: E4D passed test
+
+============================== Run Mode ERTtank3 ===============================
+
+Requirement 0.2.17: Tutorial for mode ERTtank3 is currently unavailable. Skipping
+
+============================== Run Mode SIPtank1 ===============================
+[Running mode 41] mpirun -np 1 e4d
+[Running mode SIPtank1] mpirun -np 1 e4d
+E4D files set up.
+
+Requirement 0.2.18: Check if the old and new mode keywords match
+Success: E4D passed test
+
+============================== Run Mode SIPtank2 ===============================
+
+Warning: Unable to remove file /home/zhuy359/projects/e4d_test/e4d_dev/tutorial/mode_42/tank/.#pots.txt
+[Running mode 42] mpirun -np 7 e4d
+[Running mode SIPtank2] mpirun -np 7 e4d
+E4D files set up.
+
+Requirement 0.2.19: Check if the old and new mode keywords match
+Success: E4D passed test
+
+============================== Run Mode SIPtank3 ===============================
+
+Requirement 0.2.20: Tutorial for mode ERTtank3 is currently unavailable. Skipping
+
+=============================== Run Mode 2 (FMM) ===============================
+[Running mode 2 (FMM)] mpirun -np 7 e4d -fmm 7
+
+=============================== Run Mode 3 (FMM) ===============================
+
+cd /home/zhuy359/projects/e4d_test/Req_4.0_FMM3
+
+[Running mode 3 (FMM)] mpirun -np 7 e4d -fmm 7
+
+=========================== Test E4D Error handling ============================
+Requirement 1.1.0: Check if the primary input file e4d.inp exists
+... Cannot find the primary input file e4d.inp
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.1.1: Missing the mode number in e4d.inp
+... There was a problem reading the mode in e4d.inp
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.1.2: Missing the mesh file name in e4d.inp
+... There was a problem reading the mesh file name in e4d.inp
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.1.3: Missing the survey file name in e4d.inp
+... There was a problem reading the survey file name in e4d.inp
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.1.4: Missing the conductivity file name in e4d.inp
+... There was a problem reading the conductivity file name in e4d.inp
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.1.5: Missing the output options file name in e4d.inp
+... There was a problem reading the output options file name in e4d.inp
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.1.6: Missing the inverse options file name in e4d.inp
+... There was a problem reading the inverse options file name in e4d.inp
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.1.7: Missing the reference model file name in e4d.inp
+... There was a problem reading the reference model file name in e4d.inp
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.1.8: Missing the time-lapse survey list file name in e4d.inp
+... There was a problem reading the time-lapse survey file name
+... and/or reference model update option in e4d.inp
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.1.9: Missing the time-lapse reference model option in e4d.inp
+... There was a problem reading the time-lapse survey file name
+... and/or reference model update option in e4d.inp
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.1.10: An invalid mode number was input in e4d.inp
+... The mode selected in e4d.inp is   6, which is invalid
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.1.11: An invalid mode string was input in e4d.inp
+... There was a problem reading the mode in e4d.inp
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.2.1: A mesh configuration file that was not in the directory was input in e4d.inp
+... Cannot find the mesh configuration file: test.cfg
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.3.1: A mesh node file that was not in the directory was input in e4d.inp
+... Cannot find the specified mesh node file: test.1.node
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.4.1: A survey file that was not in the directory was input in e4d.inp
+... Can't find the survey file: test.srv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.5.1: A conductivity file that was not in the directory was input in e4d.inp
+... Can't find the conductivity file: test.sig
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.6.0: Check if the primary input file fmm.inp exists
+... Cannot find the primary input file fmm.inp
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.6.1: Invalid mode number in fmm.inp
+... The mode selected in fmm.inp is   1, which is invalid
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.7.1: A mesh node file that was not in the directory was input in fmm.inp
+... Cannot find the specified mesh node file: test_fmm.1.node
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.8.1: A survey file that was not in the directory was input in fmm.inp
+... Can't find the survey file: test_fmm.srv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 1.9.1: A slowness file that was not in the directory was input in fmm.inp
+... Can't find the slowness file: test_fmm.vel
+Success: E4D reported error and exited cleanly
+
+=========================== Validate TetGen Version ============================
+Requirement 2.0.0: Check if E4D runs
+Success: e4d.log was found
+
+=========================== Validate TetGen Version ============================
+Requirement 2.0.1: Check if E4D runs
+Success: check.txt was found
+
+=========================== Validate TetGen Version ============================
+Requirement 2.0.2: Check if 200EW_T.1.ele is identical to 200EW_T.1.ele.standard
+Success: TetGen version test passed
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.1.0: Check if E4D runs
+Success: e4d.log was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.1.1: Check if mesh_build.log exists
+Success: mesh_build.log was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.1.2: Check if surface.poly exists
+Success: surface.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.1.3: Check if two_blocks.poly exists
+Success: two_blocks.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.1.4: Check if tetgen output files exist
+Success: two_blocks.1.node was found
+Success: two_blocks.1.ele was found
+Success: two_blocks.1.neigh was found
+Success: two_blocks.1.edge was found
+Success: two_blocks.1.face was found
+Success: two_blocks.trn was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.1.5: Check if two_blocks.exo exists
+Success: two_blocks.exo was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.2.0: Check if mesh_build.log exists
+Success: mesh_build.log was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.2.1: Check control points in mesh_build.log
+Success: Control points in mesh_build.log and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.2.2: Check PLC configuration in mesh_build.log
+Success: PLC configuration in mesh_build.log and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.2.3: Check hole configuration in mesh_build.log
+Number of holes is zero. Skipping
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.2.4: Check zone configuration in mesh_build.log
+Success: Zone configuration in mesh_build.log and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.3.0: Check if surface.poly exists
+Success: surface.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.3.1: Check surface points in surface.poly
+Success: Surface points in surface.poly and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.3.2: Check surface outer boundaries in surface.poly
+Success: Surface outer boundaries in surface.poly and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.4.0: Check if two_blocks.poly exists
+Success: two_blocks.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.4.1: Check surface points in two_blocks.poly
+Success: Surface points in two_blocks.poly and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.4.2: Check surface outer boundaries in two_blocks.poly
+Success: Surface outer boundaries in two_blocks.poly and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.4.3: Check lower boundary in two_blocks.poly
+Success: Lower boundary in two_blocks.poly and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.4.4: Check internal refine points and flags (zero and/or negative) in two_blocks.poly
+Success: Internal refine points in two_blocks.poly and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.4.5: Check surface boundary flag in two_blocks.poly
+Success: Surface boundary flag was set to 1 in two_blocks.poly
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.4.6: Check side and bottom flag in two_blocks.poly
+Success: Side and bottom boundary flag was set to 2 in two_blocks.poly
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.4.7: Check inner boundary flag in two_blocks.poly
+Success: Inner boundary flag in two_blocks.poly and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.4.8: Check PLC points in two_blocks.poly
+Success: PLC points in two_blocks.poly and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.4.9: Check hole configuration in two_blocks.poly
+Number of holes is zero. Skipping
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.4.10: Check zone configuration in two_blocks.poly
+Success: Zone configuration in two_blocks.poly and two_blocks.cfg matched
+
+[Running mode 1] mpirun -np 7 e4d
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.5.0: Check if all the mesh files exist
+Success: two_blocks.1.node was found
+Success: two_blocks.1.ele was found
+Success: two_blocks.1.neigh was found
+Success: two_blocks.1.edge was found
+Success: two_blocks.1.face was found
+Success: two_blocks.trn was found
+Success: test_mqual.1.node was found
+Success: test_mqual.1.ele was found
+Success: test_mqual.1.neigh was found
+Success: test_mqual.1.edge was found
+Success: test_mqual.1.face was found
+Success: test_mqual.trn was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.5.1: Check if the mesh quality number affects the mesh elements
+Success: The number of mesh elements changed with the mesh quality number
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.6.1
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.1.0: Check if E4D runs
+Success: e4d.log was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.1.1: Check if mesh_build.log exists
+Success: mesh_build.log was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.1.2: Check if surface.poly exists
+Success: surface.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.1.3: Check if mbsl.poly exists
+Success: mbsl.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.1.4: Check if tetgen output files exist
+Success: mbsl.1.node was found
+Success: mbsl.1.ele was found
+Success: mbsl.1.neigh was found
+Success: mbsl.1.edge was found
+Success: mbsl.1.face was found
+Success: mbsl.trn was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.1.5: Check if mbsl.exo exists
+Success: mbsl.exo was found
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.6.2
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.2.0: Check if mesh_build.log exists
+Success: mesh_build.log was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.2.1: Check control points in mesh_build.log
+Success: Control points in mesh_build.log and mbsl.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.2.2: Check PLC configuration in mesh_build.log
+Success: PLC configuration in mesh_build.log and mbsl.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.2.3: Check hole configuration in mesh_build.log
+Success: Hole configuration in mesh_build.log and mbsl.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.2.4: Check zone configuration in mesh_build.log
+Success: Zone configuration in mesh_build.log and mbsl.cfg matched
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.6.3
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.3.0: Check if surface.poly exists
+Success: surface.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.3.1: Check surface points in surface.poly
+Success: Surface points in surface.poly and mbsl.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.3.2: Check surface outer boundaries in surface.poly
+Success: Surface outer boundaries in surface.poly and mbsl.cfg matched
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.6.4
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.4.0: Check if mbsl.poly exists
+Success: mbsl.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.4.1: Check surface points in mbsl.poly
+Success: Surface points in mbsl.poly and mbsl.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.4.2: Check surface outer boundaries in mbsl.poly
+Success: Surface outer boundaries in mbsl.poly and mbsl.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.4.3: Check lower boundary in mbsl.poly
+Success: Lower boundary in mbsl.poly and mbsl.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.4.4: Check internal refine points and flags (zero and/or negative) in mbsl.poly
+Success: Internal refine points in mbsl.poly and mbsl.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.4.5: Check surface boundary flag in mbsl.poly
+Success: Surface boundary flag was set to 1 in mbsl.poly
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.4.6: Check side and bottom flag in mbsl.poly
+Success: Side and bottom boundary flag was set to 2 in mbsl.poly
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.4.7: Check inner boundary flag in mbsl.poly
+Success: Inner boundary flag in mbsl.poly and mbsl.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.4.8: Check PLC points in mbsl.poly
+Success: PLC points in mbsl.poly and mbsl.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.4.9: Check hole configuration in mbsl.poly
+Success: Hole configuration in mbsl.poly and mbsl.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.4.10: Check zone configuration in mbsl.poly
+Success: Zone configuration in mbsl.poly and mbsl.cfg matched
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.6.5
+
+[Running mode 1] mpirun -np 7 e4d
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.5.0: Check if all the mesh files exist
+Success: mbsl.1.node was found
+Success: mbsl.1.ele was found
+Success: mbsl.1.neigh was found
+Success: mbsl.1.edge was found
+Success: mbsl.1.face was found
+Success: mbsl.trn was found
+Success: test_mqual.1.node was found
+Success: test_mqual.1.ele was found
+Success: test_mqual.1.neigh was found
+Success: test_mqual.1.edge was found
+Success: test_mqual.1.face was found
+Success: test_mqual.trn was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.6.5.1: Check if the mesh quality number affects the mesh elements
+Success: The number of mesh elements changed with the mesh quality number
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.6.6
+
+======================= Test Mesh Generation Mode (IMI) ========================
+Requirement 2.6.6.0: Check if the mesh configuration and node files exist
+Success: mbsl.cfg was found
+Success: mbsl.1.node was found
+Success: mbsl.trn was found
+
+======================= Test Mesh Generation Mode (IMI) ========================
+Requirement 2.6.6.1: Check control points with negative flags in mbsl.1.node
+Success: Control points with negative flag -3 in mbsl.cfg and mbsl.1.node matched
+Success: Control points with negative flag -2 in mbsl.cfg and mbsl.1.node matched
+Success: Control points with negative flag -1 in mbsl.cfg and mbsl.1.node matched
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.7.1
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.1.0: Check if E4D runs
+Success: e4d.log was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.1.1: Check if mesh_build.log exists
+Success: mesh_build.log was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.1.2: Check if surface.poly exists
+Success: surface.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.1.3: Check if two_blocks.poly exists
+Success: two_blocks.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.1.4: Check if tetgen output files exist
+Success: two_blocks.1.node was found
+Success: two_blocks.1.ele was found
+Success: two_blocks.1.neigh was found
+Success: two_blocks.1.edge was found
+Success: two_blocks.1.face was found
+Success: two_blocks.trn was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.1.5: Check if two_blocks.exo exists
+Success: two_blocks.exo was found
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.7.2
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.2.0: Check if mesh_build.log exists
+Success: mesh_build.log was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.2.1: Check control points in mesh_build.log
+Success: Control points in mesh_build.log and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.2.2: Check PLC configuration in mesh_build.log
+Success: PLC configuration in mesh_build.log and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.2.3: Check hole configuration in mesh_build.log
+Number of holes is zero. Skipping
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.2.4: Check zone configuration in mesh_build.log
+Success: Zone configuration in mesh_build.log and two_blocks.cfg matched
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.7.3
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.3.0: Check if surface.poly exists
+Success: surface.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.3.1: Check surface points in surface.poly
+Success: Surface points in surface.poly and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.3.2: Check surface outer boundaries in surface.poly
+Success: Surface outer boundaries in surface.poly and two_blocks.cfg matched
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.7.4
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.4.0: Check if two_blocks.poly exists
+Success: two_blocks.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.4.1: Check surface points in two_blocks.poly
+Success: Surface points in two_blocks.poly and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.4.2: Check surface outer boundaries in two_blocks.poly
+Success: Surface outer boundaries in two_blocks.poly and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.4.3: Check lower boundary in two_blocks.poly
+Success: Lower boundary in two_blocks.poly and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.4.4: Check internal refine points and flags (zero and/or negative) in two_blocks.poly
+Success: Internal refine points in two_blocks.poly and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.4.5: Check surface boundary flag in two_blocks.poly
+Success: Surface boundary flag was set to 1 in two_blocks.poly
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.4.6: Check side and bottom flag in two_blocks.poly
+Success: Side and bottom boundary flag was set to 2 in two_blocks.poly
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.4.7: Check inner boundary flag in two_blocks.poly
+Success: Inner boundary flag in two_blocks.poly and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.4.8: Check PLC points in two_blocks.poly
+Success: PLC points in two_blocks.poly and two_blocks.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.4.9: Check hole configuration in two_blocks.poly
+Number of holes is zero. Skipping
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.4.10: Check zone configuration in two_blocks.poly
+Success: Zone configuration in two_blocks.poly and two_blocks.cfg matched
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.7.5
+
+[Running mode 1] mpirun -np 7 e4d
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.5.0: Check if all the mesh files exist
+Success: two_blocks.1.node was found
+Success: two_blocks.1.ele was found
+Success: two_blocks.1.neigh was found
+Success: two_blocks.1.edge was found
+Success: two_blocks.1.face was found
+Success: two_blocks.trn was found
+Success: test_mqual.1.node was found
+Success: test_mqual.1.ele was found
+Success: test_mqual.1.neigh was found
+Success: test_mqual.1.edge was found
+Success: test_mqual.1.face was found
+Success: test_mqual.trn was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.7.5.1: Check if the mesh quality number affects the mesh elements
+Success: The number of mesh elements changed with the mesh quality number
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.7.6
+
+======================= Test Mesh Generation Mode (SIP) ========================
+Requirement 2.7.6.0: Check if two_blocks.sig generated by e4d exists
+Sucess: two_blocks.sig was found
+
+======================= Test Mesh Generation Mode (SIP) ========================
+Requirement 2.7.6.1: Check if two_blocks.sig contains both real and imaginary parts
+Sucess: two_blocks.sig contains both real and imaginary parts
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.8.1
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.1.0: Check if E4D runs
+Success: e4d.log was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.1.1: Check if mesh_build.log exists
+Success: mesh_build.log was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.1.2: Check if surface.poly exists
+Success: surface.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.1.3: Check if tank.poly exists
+Success: tank.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.1.4: Check if tetgen output files exist
+Success: tank.1.node was found
+Success: tank.1.ele was found
+Success: tank.1.neigh was found
+Success: tank.1.edge was found
+Success: tank.1.face was found
+Success: tank.trn was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.1.5: Check if tank.exo exists
+Success: tank.exo was found
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.8.2
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.2.0: Check if mesh_build.log exists
+Success: mesh_build.log was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.2.1: Check control points in mesh_build.log
+Success: Control points in mesh_build.log and tank.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.2.2: Check PLC configuration in mesh_build.log
+Number of PLC is zero. Skipping
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.2.3: Check hole configuration in mesh_build.log
+Number of holes is zero. Skipping
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.2.4: Check zone configuration in mesh_build.log
+Success: Zone configuration in mesh_build.log and tank.cfg matched
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.8.3
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.3.0: Check if surface.poly exists
+Success: surface.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.3.1: Check surface points in surface.poly
+Success: Surface points in surface.poly and tank.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.3.2: Check surface outer boundaries in surface.poly
+Success: Surface outer boundaries in surface.poly and tank.cfg matched
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.8.4
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.4.0: Check if tank.poly exists
+Success: tank.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.4.1: Check surface points in tank.poly
+Success: Surface points in tank.poly and tank.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.4.2: Check surface outer boundaries in tank.poly
+Success: Surface outer boundaries in tank.poly and tank.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.4.3: Check lower boundary in tank.poly
+Success: Lower boundary in tank.poly and tank.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.4.4: Check internal refine points and flags (zero and/or negative) in tank.poly
+Success: Internal refine points in tank.poly and tank.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.4.5: Check surface boundary flag in tank.poly
+Success: Surface boundary flag was set to 1 in tank.poly
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.4.6: Check side and bottom flag in tank.poly
+Success: Side and bottom boundary flag was set to 2 in tank.poly
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.4.7: Check inner boundary flag in tank.poly
+Number of PLC is zero. Skipping
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.4.8: Check PLC points in tank.poly
+Number of PLC is zero. Skipping
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.4.9: Check hole configuration in tank.poly
+Number of holes is zero. Skipping
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.4.10: Check zone configuration in tank.poly
+Success: Zone configuration in tank.poly and tank.cfg matched
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.8.5
+
+[Running mode 1] mpirun -np 7 e4d
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.5.0: Check if all the mesh files exist
+Success: tank.1.node was found
+Success: tank.1.ele was found
+Success: tank.1.neigh was found
+Success: tank.1.edge was found
+Success: tank.1.face was found
+Success: tank.trn was found
+Success: test_mqual.1.node was found
+Success: test_mqual.1.ele was found
+Success: test_mqual.1.neigh was found
+Success: test_mqual.1.edge was found
+Success: test_mqual.1.face was found
+Success: test_mqual.trn was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.8.5.1: Check if the mesh quality number affects the mesh elements
+Success: The number of mesh elements changed with the mesh quality number
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.9.1
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.1.0: Check if E4D runs
+Success: e4d.log was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.1.1: Check if mesh_build.log exists
+Success: mesh_build.log was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.1.2: Check if surface.poly exists
+Success: surface.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.1.3: Check if tank.poly exists
+Success: tank.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.1.4: Check if tetgen output files exist
+Success: tank.1.node was found
+Success: tank.1.ele was found
+Success: tank.1.neigh was found
+Success: tank.1.edge was found
+Success: tank.1.face was found
+Success: tank.trn was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.1.5: Check if tank.exo exists
+Success: tank.exo was found
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.9.2
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.2.0: Check if mesh_build.log exists
+Success: mesh_build.log was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.2.1: Check control points in mesh_build.log
+Success: Control points in mesh_build.log and tank.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.2.2: Check PLC configuration in mesh_build.log
+Number of PLC is zero. Skipping
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.2.3: Check hole configuration in mesh_build.log
+Number of holes is zero. Skipping
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.2.4: Check zone configuration in mesh_build.log
+Success: Zone configuration in mesh_build.log and tank.cfg matched
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.9.3
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.3.0: Check if surface.poly exists
+Success: surface.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.3.1: Check surface points in surface.poly
+Success: Surface points in surface.poly and tank.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.3.2: Check surface outer boundaries in surface.poly
+Success: Surface outer boundaries in surface.poly and tank.cfg matched
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.9.4
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.4.0: Check if tank.poly exists
+Success: tank.poly was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.4.1: Check surface points in tank.poly
+Success: Surface points in tank.poly and tank.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.4.2: Check surface outer boundaries in tank.poly
+Success: Surface outer boundaries in tank.poly and tank.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.4.3: Check lower boundary in tank.poly
+Success: Lower boundary in tank.poly and tank.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.4.4: Check internal refine points and flags (zero and/or negative) in tank.poly
+Success: Internal refine points in tank.poly and tank.cfg matched
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.4.5: Check surface boundary flag in tank.poly
+Success: Surface boundary flag was set to 1 in tank.poly
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.4.6: Check side and bottom flag in tank.poly
+Success: Side and bottom boundary flag was set to 2 in tank.poly
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.4.7: Check inner boundary flag in tank.poly
+Number of PLC is zero. Skipping
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.4.8: Check PLC points in tank.poly
+Number of PLC is zero. Skipping
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.4.9: Check hole configuration in tank.poly
+Number of holes is zero. Skipping
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.4.10: Check zone configuration in tank.poly
+Success: Zone configuration in tank.poly and tank.cfg matched
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.9.5
+
+[Running mode 1] mpirun -np 7 e4d
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.5.0: Check if all the mesh files exist
+Success: tank.1.node was found
+Success: tank.1.ele was found
+Success: tank.1.neigh was found
+Success: tank.1.edge was found
+Success: tank.1.face was found
+Success: tank.trn was found
+Success: test_mqual.1.node was found
+Success: test_mqual.1.ele was found
+Success: test_mqual.1.neigh was found
+Success: test_mqual.1.edge was found
+Success: test_mqual.1.face was found
+Success: test_mqual.trn was found
+
+========================== Test Mesh Generation Mode ===========================
+Requirement 2.9.5.1: Check if the mesh quality number affects the mesh elements
+Success: The number of mesh elements changed with the mesh quality number
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_2.9.6
+
+======================= Test Mesh Generation Mode (SIP) ========================
+Requirement 2.9.6.0: Check if tank.sig generated by e4d exists
+Sucess: tank.sig was found
+
+======================= Test Mesh Generation Mode (SIP) ========================
+Requirement 2.9.6.1: Check if tank.sig contains both real and imaginary parts
+Sucess: tank.sig contains both real and imaginary parts
+
+=================== Test Forward Simulation Mode (Analytic) ====================
+Requirement 3.1.0: Check if E4D runs
+Success: e4d.log was found
+
+=================== Test Forward Simulation Mode (Analytic) ====================
+Requirement 3.1.1: Check if two_blocks.sig.srv exists
+Success: two_blocks.sig.srv was found
+
+=================== Test Forward Simulation Mode (Analytic) ====================
+Requirement 3.1.2: Check if two_blocks.dpd exists
+Success: two_blocks.dpd was found
+
+=================== Test Forward Simulation Mode (Analytic) ====================
+Requirement 3.1.3: Check if an_potential.* exists
+Success: an_potential.1549 was found
+Success: an_potential.1649 was found
+Success: an_potential.1749 was found
+Success: an_potential.1849 was found
+
+=================== Test Forward Simulation Mode (Analytic) ====================
+Requirement 3.2.0: Check if all the forward modeling output files exist
+Success: two_blocks.sig.srv was found
+Success: two_blocks.dpd was found
+Success: an_potential.1549 was found
+Success: an_potential.1649 was found
+Success: an_potential.1749 was found
+Success: an_potential.1849 was found
+
+=================== Test Forward Simulation Mode (Analytic) ====================
+Requirement 3.2.1: Check simulated data against theoretical values
+Success: Max rel_error of two_blocks.dpd was 0.000482
+
+=================== Test Forward Simulation Mode (Analytic) ====================
+Requirement 3.2.2: Check simulated potentials against theoretical values
+Success: Max rel_error of an_potential.1549 was 0.003036
+Success: Max rel_error of an_potential.1649 was 0.004807
+Success: Max rel_error of an_potential.1749 was 0.006436
+Success: Max rel_error of an_potential.1849 was 0.023674
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.3.0: Check if E4D runs
+Success: e4d.log was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.3.1: Check if two_blocks.sig.srv exists
+Success: two_blocks.sig.srv was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.3.2: Check if two_blocks.dpd exists
+Success: two_blocks.dpd was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.3.3: Check if potential.* exists
+Success: potential.1549 was found
+Success: potential.1649 was found
+Success: potential.1749 was found
+Success: potential.1849 was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.4.0: Check if all the forward modeling output files exist
+Success: two_blocks.sig.srv was found
+Success: two_blocks.dpd was found
+Success: potential.1549 was found
+Success: potential.1649 was found
+Success: potential.1749 was found
+Success: potential.1849 was found
+Success: an_potential.1549 was found
+Success: an_potential.1649 was found
+Success: an_potential.1749 was found
+Success: an_potential.1849 was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.4.1: Check simulated data against analytic solutions
+Success: Mean rel_err of two_blocks.dpd was 0.042136
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.4.2: Check simulated potentials against analytic solutions
+Success: Mean rel_err of potential.1549 was 0.041098
+Success: Mean rel_err of potential.1649 was 0.034851
+Success: Mean rel_err of potential.1749 was 0.032300
+Success: Mean rel_err of potential.1849 was 0.032070
+
+============================= Test Inversion Mode ==============================
+Requirement 3.5.0: Check if the primary input file e4d.inp exists
+Success: e4d.inp was found
+
+=========================== Test E4D Error handling ============================
+Requirement 3.5.1: The number of processors is not correct in mode ERT2
+... E4D requires at least 2 processors to run in mode ERT2
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 3.5.2: The number of processors is not correct in mode ERT2
+... The number of processors minus 1 must not exceed the number electrodes
+Success: E4D reported error and exited cleanly
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_3.6.1
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.6.1.0: Check if E4D runs
+Success: e4d.log was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.6.1.1: Check if mbsl.sig.srv exists
+Success: mbsl.sig.srv was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.6.1.2: Check if mbsl.dpd exists
+Success: mbsl.dpd was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.6.1.3: Check if potential.* exists
+Success: potential.2071 was found
+Success: potential.2072 was found
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_3.7.1
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.7.1.0: Check if E4D runs
+Success: e4d.log was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.7.1.1: Check if two_blocks.sig.srv exists
+Success: two_blocks.sig.srv was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.7.1.2: Check if two_blocks.dpd exists
+Success: two_blocks.dpd was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.7.1.3: Check if potential.* exists
+Success: potential.1449 was found
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_3.7.2
+
+====================== Test Forward Simulation Mode (SIP) ======================
+Requirement 3.7.2.0: Check if two_blocks.dpd generated by e4d exists
+Success: two_blocks.dpd was found
+
+====================== Test Forward Simulation Mode (SIP) ======================
+Requirement 3.7.2.1: Check if two_blocks.dpd contains both real and imaginary parts
+Success: two_blocks.dpd contains both real and imaginary parts
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_3.8.1
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.8.1.0: Check if E4D runs
+Success: e4d.log was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.8.1.1: Check if mbsl.sig.srv exists
+Success: mbsl.sig.srv was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.8.1.2: Check if mbsl.dpd exists
+Success: mbsl.dpd was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.8.1.3: Check if potential.* exists
+Success: potential.1415 was found
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_3.8.2
+
+====================== Test Forward Simulation Mode (SIP) ======================
+Requirement 3.8.2.0: Check if mbsl.dpd generated by e4d exists
+Success: mbsl.dpd was found
+
+====================== Test Forward Simulation Mode (SIP) ======================
+Requirement 3.8.2.1: Check if mbsl.dpd contains both real and imaginary parts
+Success: mbsl.dpd contains both real and imaginary parts
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_3.9.1
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.9.1.0: Check if E4D runs
+Success: e4d.log was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.9.1.1: Check if tank.sig.srv exists
+Success: tank.sig.srv was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.9.1.2: Check if tank.dpd exists
+Success: tank.dpd was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.9.1.3: Check if potential.* exists
+Success: potential.1 was found
+Success: potential.2 was found
+Success: potential.3 was found
+Success: potential.4 was found
+Success: potential.5 was found
+Success: potential.6 was found
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_3.10.1
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.10.1.0: Check if E4D runs
+Success: e4d.log was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.10.1.1: Check if tank.sig.srv exists
+Success: tank.sig.srv was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.10.1.2: Check if tank.dpd exists
+Success: tank.dpd was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.10.1.3: Check if potential.* exists
+Success: potential.1 was found
+Success: potential.2 was found
+Success: potential.3 was found
+Success: potential.4 was found
+Success: potential.5 was found
+Success: potential.6 was found
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_3.10.2
+
+====================== Test Forward Simulation Mode (SIP) ======================
+Requirement 3.10.2.0: Check if tank.dpd generated by e4d exists
+Success: tank.dpd was found
+
+====================== Test Forward Simulation Mode (SIP) ======================
+Requirement 3.10.2.1: Check if tank.dpd contains both real and imaginary parts
+Success: tank.dpd contains both real and imaginary parts
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_3.11.1
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.11.1.0: Check if E4D runs
+Success: fmm.log was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.11.1.1: Check if borehole.vel.srv exists
+Success: borehole.vel.srv was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.11.1.2: Check if borehole.dpd exists
+Success: borehole.dpd was found
+
+========================= Test Forward Simulation Mode =========================
+Requirement 3.11.1.3: Check if potential.* exists
+Success: traveltime.1 was found
+Success: traveltime.5 was found
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.0: Check if the inverse option file exists
+... Cannot find the inverse options file two_blocks.inv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.1: Check inverse option file format
+... There was a problem reading the number of constraint in two_blocks.inv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.2: Check inverse option file format
+... There was a problem reading the zone number
+... for constraint block 1 in two_blocks.inv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.3: Check inverse option file format
+... There was a problem reading either the structure metric
+... or the spatial weights for constraint block 1 in two_blocks.inv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.4: Check inverse option file format
+... There was a problem reading either the reweighting function
+... or the reweighting function parameters for constraint block 1 in two_blocks.inv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.5: Check inverse option file format
+... There was a problem reading the zone links
+... for constraint block 1 in two_blocks.inv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.6: Check inverse option file format
+... There was a problem reading the reference
+... for constraint block 1 in two_blocks.inv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.7: Check inverse option file format
+... There was a problem reading the relative weight
+... for constraint block 1 in two_blocks.inv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.8: Check inverse option file format
+... Structural metrics 12 is for joint inversion
+... of travel time and resistivity data, and require both
+... E4D and FMM to be running in inverse mode
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.9: Check inverse option file format
+... Structural metrics 13 is for joint inversion
+... of travel time and resistivity data, and require both
+... E4D and FMM to be running in inverse mode
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.10: Check inverse option file format
+... Invalid structural metric (-1) in the inverse options file two_blocks.inv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.11: Check inverse option file format
+... Invalid structural metric (14) in the inverse options file two_blocks.inv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.12: Check inverse option file format
+... Invalid reweighting function (0) in the inverse options file two_blocks.inv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.13: Check inverse option file format
+... Invalid reweighting function (100) in the inverse options file two_blocks.inv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.14: Check inverse option file format
+... There was a problem reading the global starting constraint weight 
+... (beta) line in the inversion options file in two_blocks.inv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.15: Check inverse option file format
+... There was a problem reading the target chi-squared value
+... in two_blocks.inv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.16: Check inverse option file format
+... There was a problem reading the minimum and maximum number of inner
+... iterations in the inverse options file two_blocks.inv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.17: Check inverse option file format
+... There was a problem reading the max and min
+... conductivities in the inverse options file two_blocks.inv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.18: Check inverse option file format
+... There was a problem reading the update option
+... in the inverse options file two_blocks.inv
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.1.19: Check inverse option file format
+... There was a problem reading the data culling options
+... in the inverse options file two_blocks.inv
+Success: E4D reported error and exited cleanly
+
+============================= Test Inversion Mode ==============================
+Requirement 4.2.0: Check if E4D runs
+Success: e4d.log was found
+
+============================= Test Inversion Mode ==============================
+Requirement 4.2.1: Check if sigma.* exists
+Success: Conductivity files sigma.1 to sigma.8 were found
+
+============================= Test Inversion Mode ==============================
+Requirement 4.2.2: Check if two_blocks.dpd exists
+Success: two_blocks.dpd was found
+
+============================= Test Inversion Mode ==============================
+Requirement 4.3.0: Check if e4d.log exists
+Success: e4d.log was found
+
+============================= Test Inversion Mode ==============================
+Requirement 4.3.1: Check if inversion solution converges
+Success: Chi-squared was no greater than the target value
+
+============================= Test Inversion Mode ==============================
+Requirement 4.4.0: Check if the primary input file e4d.inp exists
+Success: e4d.inp was found
+
+=========================== Test E4D Error handling ============================
+Requirement 4.4.1: The number of processors is not correct in mode ERT3
+... E4D requires at least 2 processors to run in mode ERT3
+Success: E4D reported error and exited cleanly
+
+=========================== Test E4D Error handling ============================
+Requirement 4.4.2: The number of processors is not correct in mode ERT3
+... The number of processors minus 1 must not exceed the number electrodes
+Success: E4D reported error and exited cleanly
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_4.5.1
+
+=========================== Test E4D Error handling ============================
+Requirement 4.5.1.0: Check if the time-lapse survey list file exists
+... Cannot find the time lapse survey list file: surveys.txt
+Success: E4D reported error and exited cleanly
+
+========================== Testing E4D Error handling ==========================
+Requirement 4.5.1.1: Check time-lapse survey list file format
+... There was a problem reading the number of survey files in surveys.txt
+Success: E4D reported error and exited cleanly
+
+========================== Testing E4D Error handling ==========================
+Requirement 4.5.1.2: Check time-lapse survey list file format
+... There was a problem reading time-lapse file at time            1
+... in the time lapse survey file: surveys.txt
+Success: E4D reported error and exited cleanly
+
+========================== Testing E4D Error handling ==========================
+Requirement 4.5.1.3: Check time-lapse survey list file format
+... There was a problem finding the time-lapse file: sig_0.0.srv
+Success: E4D reported error and exited cleanly
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_4.5.2
+
+============================= Test Inversion Mode ==============================
+Requirement 4.5.2.0: Check if E4D runs
+Success: e4d.log was found
+
+============================= Test Inversion Mode ==============================
+Requirement 4.5.2.1: Check if tl_sig*.* exists
+Success: Conductivity files tl_sig0.000 to tl_sig10.000 were found
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_4.6.1
+
+============================= Test Inversion Mode ==============================
+Requirement 4.6.1.0: Check if E4D runs
+Success: e4d.log was found
+
+============================= Test Inversion Mode ==============================
+Requirement 4.6.1.1: Check if sigma.* exists
+Success: Conductivity files sigma.1 to sigma.9 were found
+
+============================= Test Inversion Mode ==============================
+Requirement 4.6.1.2: Check if mbsl.dpd exists
+Success: mbsl.dpd was found
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_4.6.2
+
+============================= Test Inversion Mode ==============================
+Requirement 4.6.2.0: Check if e4d.log exists
+Success: e4d.log was found
+
+============================= Test Inversion Mode ==============================
+Requirement 4.6.2.1: Check if inversion solution converges
+Success: Chi-squared was no greater than the target value
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_4.7.1
+
+============================= Test Inversion Mode ==============================
+Requirement 4.7.1.0: Check if E4D runs
+Success: fmm.log was found
+
+============================= Test Inversion Mode ==============================
+Requirement 4.7.1.1: Check if speed.* exists
+Success: Slowness files speed.1 to speed.17 were found
+
+============================= Test Inversion Mode ==============================
+Requirement 4.7.1.2: Check if borehole.dpd exists
+Success: borehole.dpd was found
+
+Warning: Unable to delete directory /home/zhuy359/projects/e4d_test/Req_4.7.2
+
+============================= Test Inversion Mode ==============================
+Requirement 4.7.2.0: Check if fmm.log exists
+Success: fmm.log was found
+
+============================= Test Inversion Mode ==============================
+Requirement 4.7.2.1: Check if inversion solution converges
+Success: Chi-squared was no greater than the target value
